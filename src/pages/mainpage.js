@@ -5,21 +5,15 @@ import Image from 'react-bootstrap/Image';
 
 const MainP = () =>
 {
-    document.body.style.backgroundImage ="url('https://png.pngtree.com/back_origin_pic/03/90/78/4a4fd3e8a537931c6fc51b6112ae5105.jpg')";
+    document.body.style.backgroundColor ="#D9D9D9";
     return (
-        <Container className="d-flex justify-content-center align-items-center"
+        <Container className="d-flex justify-content-center align-items-right"
         style = {{height: window.innerHeight - 54}}>
-            <Card style={{width: 600}} className="d-flex justify-content-center align-items-center">
-            <div ><Image src="https://sun6-20.userapi.com/s/v1/if1/XRDuxnC8OXECl_OgK-soxDF3VODt4ATOTq-RTPwupqbfOIqzOexaGe5aje0YZ90hGMvxTyT-.jpg?size=1845x2160&quality=96&crop=0,0,1845,2160&ava=1"thumbnail width="600" />
-            <p class="text-center">Школа №55 </p>
-            </div></Card>
+            <div><Image src="https://sun9-56.userapi.com/impg/ip7S7E7csLKl7QFslLL72f-gzQ1MvYU-ElKJzA/Qf5werH715k.jpg?size=1280x199&quality=96&sign=9adc0319d98ac6d5e023879af3e688a8&type=album"width="1920px"height="331px"fluid/>
+            </div>
             <p class="text-start">
-           <div><b>Полное наименование образовательной организации:</b> Муниципальное общеобразовательное учреждение школа №55 муниципального образования городской округ Люберцы Московской области</div><br></br>
-            <div><b>Сокращённое наименование образовательной организации:</b> Школа №55</div> <br></br>
-        <div><b> Учредитель образовательной организации: </b> Администация муниципального образования городской округ Люберцы Московской области<br></br></div><pre></pre>
-        <div> <b>Дата создания образовательной организации:</b> 09.07.1985<br></br></div><pre></pre>
-        <div><b>Языки образования:</b> Русский<br></br></div></p>
-            </Container>
+           <div><b></b></div><br></br>
+            </p></Container>
     );
 };
 

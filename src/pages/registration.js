@@ -3,10 +3,9 @@ import {Card, Container, Form, Button, Col} from 'react-bootstrap'
 import { LOGIN_ROUTE, REGISTRATION_ROUTE } from "../utils/consts";
 import Row from 'react-bootstrap/Row'
 import { useLocation, NavLink, useNavigate } from "react-router-dom";
-import { login, registration } from "../http/userAPI";
+import { login, registration } from "../http/userApi";
 import {observer} from "mobx-react-lite";
-import { RASP_ROUTE } from "../utils/consts";
-import {Context} from "../index"
+import {Context} from "../index";
 
 const Registration = observer(() => {
     document.body.style.backgroundImage ="url('https://png.pngtree.com/back_origin_pic/03/90/78/4a4fd3e8a537931c6fc51b6112ae5105.jpg')";
@@ -15,15 +14,15 @@ const Registration = observer(() => {
     const location = useLocation()
     const isLogin = location.pathname === LOGIN_ROUTE
     const [userLogin, setLogin] = useState('')
-    const [paasword,setPassword] = useState('')
+    const [password,setPassword] = useState('')
     const click = async () =>{
         try{
   
         if (isLogin){
-            const response = await login(userLogin, paasword)
+            const response = await login(userLogin, password)
             console.log(response)}
         else{  
-            const response = await registration(userLogin, paasword)
+            const response = await registration(userLogin, password)
             console.log(response)
     }
     user.setUser()
@@ -49,7 +48,7 @@ const Registration = observer(() => {
                  <Form.Control 
                  className="mt-3"
                  placeholder = "Введите пароль"
-                 value = {paasword}
+                 value = {password}
                 onChange = { e => setPassword(e.target.value)}
                 type="password"
                  />

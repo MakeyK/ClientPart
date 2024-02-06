@@ -1,9 +1,4 @@
-/*export const ADMIN_ROUTE = '/admin'
+export const ADMIN_ROUTE = '/admin'
 export const LOGIN_ROUTE = '/auth'
 export const REGISTRATION_ROUTE = '/registration'
-export const RASP_ROUTE = '/rasp'
-export const ADD_RASP_ROUTE = '/rasp/create'
-export const RASPID_ROUTE = '/raspid'
 export const MAIN_ROUTE = "/main"
-export const RASPDATA_ROUTE = "/raspdata"
-export const DATA_ROUTE = "/data1"*/
