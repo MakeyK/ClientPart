@@ -27,7 +27,7 @@ const Registration = observer(() => {
     }
     user.setUser()
     user.setIsAuth(true)
-    navigate(RASP_ROUTE)} 
+    navigate(LOGIN_ROUTE)} 
     catch(e){
         alert(e)
     }

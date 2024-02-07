@@ -9,11 +9,24 @@ const MainP = () =>
     return (
         <Container className="d-flex justify-content-center align-items-right"
         style = {{height: window.innerHeight - 54}}>
-            <div><Image src="https://sun9-56.userapi.com/impg/ip7S7E7csLKl7QFslLL72f-gzQ1MvYU-ElKJzA/Qf5werH715k.jpg?size=1280x199&quality=96&sign=9adc0319d98ac6d5e023879af3e688a8&type=album"width="1920px"height="331px"fluid/>
+            <div>
+            <div><Image class="container-fluid" src="https://sun9-56.userapi.com/impg/ip7S7E7csLKl7QFslLL72f-gzQ1MvYU-ElKJzA/Qf5werH715k.jpg?size=1280x199&quality=96&sign=9adc0319d98ac6d5e023879af3e688a8&type=album"hspace="20"width="1920px"height="331px"fluid/>
+            </div><br></br>
+            <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center" >
+                
+            Что такое Cloud Warehouse?
+            <span class="badge badge-primary badge-pill"></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+            Cloud WareHouse (CWH) - сайт облачного хранилища. <br></br>Российский аналог Google Disk, Dropbox и другим сайтам подобной идеи. Наша идея - сделать облако не просто бесплатным, а удобным в использовании, освоении и обмене своих данных!
+            <span class="badge badge-primary badge-pill"></span>
+            </li>
+            </ul>
+
+            
             </div>
-            <p class="text-start">
-           <div><b></b></div><br></br>
-            </p></Container>
+            </Container>
     );
 };
 
