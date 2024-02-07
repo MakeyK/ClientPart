@@ -1,22 +1,44 @@
 import React, {useContext} from 'react';
-import {observer} from "mobx-react-lite";
 import {Context} from "../index";
-//import Col from "react-bootstrap/Col";
-import ListGroup from "react-bootstrap/ListGroup";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import {NavLink} from "react-router-dom";
+import {ADMIN_ROUTE, LOGIN_ROUTE, MAIN_ROUTE, REGISTRATION_ROUTE} from "../utils/consts";
+import {Button} from "react-bootstrap";
+import {observer} from "mobx-react-lite";
+import Container from "react-bootstrap/Container";
+import {useNavigate } from 'react-router-dom';
 
+const NavBar1 = observer(() => {
+    const {user} = useContext(Context)
+  //  console.log(user)
+ //   const history = useNavigate()
 
-const RaspBar = observer(() => {
-    const {raspStore} = useContext(Context)
+    const logOut = () => {
+        user.setUser({})
+        user.setIsAuth(false)
+    }
+
     return (
-        <ListGroup>
-            {raspStore.predmet.map(predmet1 =>
-                <ListGroup.Item key={predmet1.id}>
-                    { predmet1.predmet}
-                </ListGroup.Item>
-            )}
-        </ListGroup>
-        //<div>asd</div>
+        <Navbar bg="gray" variant="gray" >
+            <Container>
+                <NavLink style={{color:'white'}} to={MAIN_ROUTE}></NavLink>
+                {user.getisAuth() ?
+                    <Nav className="ml-auto" style={{color: 'white'}}>
+                        <Button
+                            variant={"default"}
+                            onClick={() => {user.setIsAuth(true)}}> <div> <NavLink to={LOGIN_ROUTE}> <p class="text-white"> Авторизоваться</p></NavLink></div>
+                        </Button>
+                    </Nav>
+                    :
+                    <Nav className="ml-auto" style={{color: 'white'}}>
+                        <Button variant={"outline-light"} onClick={() => user.setIsAuth(true)}><div> <NavLink to={LOGIN_ROUTE}>
+                            <p>Авторизация</p></NavLink></div></Button>
+                    </Nav>
+                }
+            </Container>
+        </Navbar>
     );
 });
 
-export default RaspBar;
+export default NavBar1;

@@ -19,12 +19,33 @@ const MainP = () =>
             <span class="badge badge-primary badge-pill"></span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
-            Cloud WareHouse (CWH) - сайт облачного хранилища. <br></br>Российский аналог Google Disk, Dropbox и другим сайтам подобной идеи. Наша идея - сделать облако не просто бесплатным, а удобным в использовании, освоении и обмене своих данных!
+            Cloud WareHouse (CWH) - сайт облачного хранилища. Российский аналог Google Disk, Dropbox и другим сайтам подобной идеи. Наша идея - сделать облако не просто бесплатным, а удобным в использовании, освоении и обмене своих данных!
             <span class="badge badge-primary badge-pill"></span>
             </li>
             </ul>
 
+            <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center" >
+            Разработчики
+            <span class="badge badge-primary badge-pill"></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+            <dl class="dl-horizontal">
+                
+            <Image src="https://sun9-31.userapi.com/impg/Ufhk8LPztTmxg283kvTDVMc9mt2MFqNSW4F1RQ/xS-9Zourb9Y.jpg?size=96x96&quality=96&sign=03f5e7e11421d9088323d3125f48ed8b&type=album"width="92px"height="92px"></Image>
+            Разработчик дизайн макета сайта
+            Сердечный М.С. <br></br>
             
+            <Image src="https://sun9-31.userapi.com/impg/Ufhk8LPztTmxg283kvTDVMc9mt2MFqNSW4F1RQ/xS-9Zourb9Y.jpg?size=96x96&quality=96&sign=03f5e7e11421d9088323d3125f48ed8b&type=album"width="92px"height="92px"></Image> 
+            Разработчик клиентской части сайта 
+            Макеева Е.В.<br></br>
+            
+            <Image src="https://sun9-31.userapi.com/impg/Ufhk8LPztTmxg283kvTDVMc9mt2MFqNSW4F1RQ/xS-9Zourb9Y.jpg?size=96x96&quality=96&sign=03f5e7e11421d9088323d3125f48ed8b&type=album"width="92px"height="92px"></Image>
+            Разработчик серверной части сайта 
+            Мухторов Р.С.
+            </dl>
+            </li>
+            </ul>
             </div>
             </Container>
     );
