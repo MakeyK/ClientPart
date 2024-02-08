@@ -23,3 +23,17 @@ body
     background: black;
     position: absolute;
 }
+.wrap 
+{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column
+}
+.content 
+{
+    flex: 1
+}
+.navbar 
+{
+    height: 0;
+}
