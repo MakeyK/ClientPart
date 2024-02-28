@@ -8,25 +8,26 @@ import {observer} from "mobx-react-lite";
 import {Context} from "../index";
 
 const Registration = observer(() => {
-    document.body.style.backgroundImage ="url('https://png.pngtree.com/back_origin_pic/03/90/78/4a4fd3e8a537931c6fc51b6112ae5105.jpg')";
+    document.body.style.backgroundColor ="#D9D9D9";
     const {user} = useContext(Context)
-     const navigate =useNavigate()
+    const navigate =useNavigate()
     const location = useLocation()
     const isLogin = location.pathname === LOGIN_ROUTE
-    const [userLogin, setLogin] = useState('')
+    const [email, setEmail] = useState('')
     const [password,setPassword] = useState('')
+    const [password_check,setPasswordCheck] = useState('')
     const click = async () =>{
         try{
-  
         if (isLogin){
-            const response = await login(userLogin, password)
+            const response = await login(email, password, password_check)
             console.log(response)}
         else{  
-            const response = await registration(userLogin, password)
+            const response = await registration(email, password, password_check)
             console.log(response)
     }
     user.setUser()
     user.setIsAuth(true)
+    user.setPasswordCheck(true)
     navigate(LOGIN_ROUTE)} 
     catch(e){
         alert(e)
@@ -35,30 +36,38 @@ const Registration = observer(() => {
     }
     return (
         <Container
-        className = 'd-flex justify-content-center align-items-center '
+        className = 'd-flex justify-content-center align-items-center'
         style = {{height: window.innerHeight - 54}}>
-        <Card style={{width: 600}} className="p-5 bg-info">
-            <h2 className="m-auto" style={{color:'white'}}>{isLogin ? 'Авторизация' : 'Регистрация'}</h2>
+        <Card style={{width: 900, borderRadius: 80, height: 520}} className="p-5 #FFFAF4">
+            <h2 className="m-auto" style={{color:'black'}}>{isLogin ? 'Авторизация' : 'Регистрация'}</h2>
             <Form className="d-flex flex-column">
                 <Form.Control
                 className="mt-3"
-                placeholder = "Введите логин"
-                value = {userLogin}
-                onChange = { e => setLogin(e.target.value)}/>
+                placeholder = "Введите ваш email..."
+                value = {email}
+                onChange = { e => setEmail(e.target.value)}/>
+                
+                
+                <Form.Control
+                className="mt-3"
+                placeholder = "Введите ваш пароль..."
+                value = {password}
+                onChange = { e => setPassword(e.target.value)}/>
+
                  <Form.Control 
                  className="mt-3"
-                 placeholder = "Введите пароль"
-                 value = {password}
-                onChange = { e => setPassword(e.target.value)}
+                 placeholder = "Введите ваш пароль ещё раз..."
+                 value = {password_check}
+                onChange = { e => setPasswordCheck(e.target.value)}
                 type="password"
                  />
 
-                 <Row >
+                 <Row>
                     <Col className="d-flex justify-content-between mt-3 pl-3 pr-3">
                 {isLogin? 
                 <div> <NavLink to={REGISTRATION_ROUTE}> Регистрация </NavLink> </div>
                 :
-                <div> <p class="text-white"> Есть аккаунт? </p> <NavLink to={LOGIN_ROUTE}> <p class="text-black"> Войти </p> </NavLink> </div>}
+                <div> Есть аккаунт? <NavLink to={LOGIN_ROUTE}> <p class="text-001AFF"> Войти </p> </NavLink> </div>}
                  <Button
                  variant={"outline-success"}
                             onClick={click}>

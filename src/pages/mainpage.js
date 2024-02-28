@@ -9,8 +9,7 @@ const MainP = () =>
     return (
         <Container className="d-flex justify-content-center align-items-right"
         style = {{height: window.innerHeight - 54}}>
-            
-            <div>
+            <div >
             <div><Image className="container-fluid" src="https://sun9-56.userapi.com/impg/ip7S7E7csLKl7QFslLL72f-gzQ1MvYU-ElKJzA/Qf5werH715k.jpg?size=1280x199&quality=96&sign=9adc0319d98ac6d5e023879af3e688a8&type=album"hspace="20"width="1920px"height="331px"fluid/>
             </div><br></br>
             <div class="navbar navbar-default navbar-fixed-top">
