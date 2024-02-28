@@ -24,12 +24,16 @@ const NavBar = observer(() => {
             <Container>
                 <NavLink style={{color:'white'}} to={MAIN_ROUTE}></NavLink>
                 {user.getisAuth() ?
-                    <Nav className="ml-auto" style={{color: 'white', fontFamily:"Righteous"}}>
+                
+                    <Nav className="ml-auto" style={{color: 'white', fontFamily:"Righteous", paddingRight:10000, letterSpacing: "20%"}}>
                         <Button
+                        
+                            size={"lg"}
                             variant={"outline-link"}
                             onClick={() => {user.setIsAuth(true)}}> <div> <p class="text-white"> Cloud <br></br> Warehouse</p></div>
                         </Button>
                     </Nav>
+                    
                     :
                     <Nav className="ml-auto" style={{color: 'white'}}>
                         <Button variant={"outline-light"} onClick={() => user.setIsAuth(true)}><div> <NavLink to={LOGIN_ROUTE}>

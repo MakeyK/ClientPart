@@ -8,6 +8,8 @@ import {observer} from "mobx-react-lite";
 import {Context} from "../index";
 
 const Registration = observer(() => {
+    document.body.style.backgroundImage ="url(/cloud.png)";
+    document.body.style.backgroundColor="#ebebeb"
     const {user} = useContext(Context)
     const navigate =useNavigate()
     const location = useLocation()
