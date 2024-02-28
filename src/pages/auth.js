@@ -13,16 +13,16 @@ const Auth = observer(() => {
      const navigate =useNavigate()
     const location = useLocation()
     const isLogin = location.pathname === LOGIN_ROUTE
-    const [userLogin, setLogin] = useState('')
+    const [email, setEmail] = useState('')
     const [password,setPassword] = useState('')
     const click = async () =>{
         try{
   
         if (isLogin){
-            const response = await login(userLogin, password)
+            const response = await login(email, password)
             console.log(response)}
         else{  
-            const response = await registration(userLogin, password)
+            const response = await registration(email, password)
             console.log(response)
     }
     user.setUser()
@@ -43,8 +43,9 @@ const Auth = observer(() => {
                 <Form.Control
                 className="mt-3"
                 placeholder = "Введите логин"
-                value = {userLogin}
-                onChange = { e => setLogin(e.target.value)}/>
+                value = {email}
+                type="email"
+                onChange = { e => setEmail(e.target.value)}/>
                  <Form.Control 
                  className="mt-3"
                  placeholder = "Введите пароль"

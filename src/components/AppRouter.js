@@ -1,7 +1,7 @@
 import React, { useContext } from "react"; 
 import {Routes, Route, Navigate} from 'react-router-dom'  
 import { authRoutes, publicRoutes } from "../routes"; 
-import { LOGIN_ROUTE } from "../utils/consts"; 
+import { LOGIN_ROUTE, REGISTRATION_ROUTE } from "../utils/consts"; 
 import { Context } from "../index"; 
 let isAuth = true 
 const AppRouter = () => { 
@@ -15,7 +15,7 @@ const AppRouter = () => {
     {publicRoutes.map(({path, Component}) => 
         <Route key = {path} path ={path} element = {<Component/>} exact/> 
     )} 
-        <Route path="*" element = {<Navigate to={LOGIN_ROUTE} />} replace />  
+        <Route path="*" element = {<Navigate to={REGISTRATION_ROUTE} />} replace />  
     </Routes> 
     ) 
 };

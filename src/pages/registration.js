@@ -8,7 +8,6 @@ import {observer} from "mobx-react-lite";
 import {Context} from "../index";
 
 const Registration = observer(() => {
-    document.body.style.backgroundColor ="#D9D9D9";
     const {user} = useContext(Context)
     const navigate =useNavigate()
     const location = useLocation()
@@ -17,59 +16,72 @@ const Registration = observer(() => {
     const [password,setPassword] = useState('')
     const [password_check,setPasswordCheck] = useState('')
     const click = async () =>{
-        try{
-        if (isLogin){
-            const response = await login(email, password, password_check)
-            console.log(response)}
-        else{  
-            const response = await registration(email, password, password_check)
-            console.log(response)
+    
+    console.log(email)
+    try{
+    if (isLogin){
+    const response = await login(email, password, password_check)
+    console.log(response)}
+    else{
+    console.log(email)
+    const response = await registration(email, password, password_check)
+    console.log(response)
     }
     user.setUser()
     user.setIsAuth(true)
-    user.setPasswordCheck(true)
-    navigate(LOGIN_ROUTE)} 
+    navigate(LOGIN_ROUTE)}
     catch(e){
-        alert(e)
+    alert(e)
     }
-
+    
     }
     return (
         <Container
         className = 'd-flex justify-content-center align-items-center'
         style = {{height: window.innerHeight - 54}}>
-        <Card style={{width: 900, borderRadius: 80, height: 520}} className="p-5 #FFFAF4">
-            <h2 className="m-auto" style={{color:'black'}}>{isLogin ? 'Авторизация' : 'Регистрация'}</h2>
-            <Form className="d-flex flex-column">
+        <Card style={{width: 900, borderRadius: 80, height: 520, fontFamily:"Play"}} className="p-5 #FFFAF4">
+            <h2 className="m-auto" style={{color:'black', height: 300, width: 239, position:'relative'}}>{isLogin ? 'Авторизация' : 'Регистрация'}</h2>
+            <Form className="d-flex flex-column" style={{position:'relative', paddingBottom:'100px'}}>
                 <Form.Control
+                style={{borderRadius: 70, width: 764, height: 71}}
                 className="mt-3"
+                size="lg"
                 placeholder = "Введите ваш email..."
                 value = {email}
-                onChange = { e => setEmail(e.target.value)}/>
-                
+                onChange = { e => setEmail(e.target.value)}
+                type="email"
+                />
                 
                 <Form.Control
+                style={{borderRadius: 70, width: 764, height: 71}}
                 className="mt-3"
+                size="lg"
                 placeholder = "Введите ваш пароль..."
                 value = {password}
-                onChange = { e => setPassword(e.target.value)}/>
+                onChange = { e => setPassword(e.target.value)}
+                type="password"
+                />
 
-                 <Form.Control 
-                 className="mt-3"
-                 placeholder = "Введите ваш пароль ещё раз..."
-                 value = {password_check}
+                <Form.Control 
+                style={{borderRadius: 70, width: 764, height: 71}}
+                className="mt-3"
+                size="lg"
+                placeholder = "Введите ваш пароль ещё раз..."
+                value = {password_check}
                 onChange = { e => setPasswordCheck(e.target.value)}
                 type="password"
-                 />
+                />
 
-                 <Row>
+                <Row>
                     <Col className="d-flex justify-content-between mt-3 pl-3 pr-3">
                 {isLogin? 
                 <div> <NavLink to={REGISTRATION_ROUTE}> Регистрация </NavLink> </div>
                 :
-                <div> Есть аккаунт? <NavLink to={LOGIN_ROUTE}> <p class="text-001AFF"> Войти </p> </NavLink> </div>}
+                <div> <p style={{fontSize:"24px"}}>Есть аккаунт? <NavLink to={LOGIN_ROUTE} variant={"outline-link"}>Войти</NavLink> </p> </div>}
                  <Button
-                 variant={"outline-success"}
+                 style={{borderRadius: 41, height:71, width:195}}
+                 variant={"outline-dark"}
+                 size="lg"
                             onClick={click}>
                        {isLogin ? 'Войти' : 'Регистрация'} 
                  </Button>
