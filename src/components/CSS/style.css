@@ -37,3 +37,7 @@ body
 {
     height: 0;
 }
+.sizecell 
+{
+    width: calc(715px - 80px);
+}

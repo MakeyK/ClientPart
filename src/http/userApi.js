@@ -14,7 +14,11 @@ return jwtDecode(data.token)
 }
 
 export const check = async () => {
-const {data} = await $authHost.get('cwh/auth/auth' )
+const {data} = await $authHost.get('cwh/auth/auth')
 localStorage.setItem('token', data.token)
 return jwtDecode(data.token)
+}
+export const changePassword = async (email, old_password, new_password, new_password_check) => {
+    const {data} = await $authHost.patch('cwh/edit/change_password', {email, old_password, new_password, new_password_check})
+    return 0
 }

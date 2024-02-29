@@ -1,9 +1,9 @@
 import React, {useContext, useState}  from "react";
-import {Card, Container, Form, Button, Col} from 'react-bootstrap'
+import {Card, Container, Form, Button, Col, Nav} from 'react-bootstrap'
 import { LOGIN_ROUTE, REGISTRATION_ROUTE, FORGOTPASSWORD_ROUTE } from "../utils/consts";
 import Row from 'react-bootstrap/Row'
 import { useLocation, NavLink, useNavigate } from "react-router-dom";
-import { login, registration } from "../http/userApi";
+import { changePassword, check, login, registration } from "../http/userApi";
 import {observer} from "mobx-react-lite";
 import {Context} from "../index";
 
@@ -15,45 +15,81 @@ const Auth = observer(() => {
     const location = useLocation()
     const isLogin = location.pathname === LOGIN_ROUTE
     const [email, setEmail] = useState('')
-    const [password,setPassword] = useState('')
-    const click = async () =>{
-        try{
-  
-        if (isLogin){
-            const response = await login(email, password)
-            console.log(response)}
-        else{  
-            const response = await registration(email, password)
-            console.log(response)
-    }
-    user.setUser()
-    user.setIsAuth(true)
-    navigate(LOGIN_ROUTE)} 
-    catch(e){
+    const [old_password, setOldPassword] = useState('')
+    const [new_password,setNewPassword] = useState('')
+    const [new_password_check,setNewPasswordCheck] = useState('')
+    const click = async () =>
+    {
+        try
+        {
+                const response = await changePassword(email, old_password, new_password,  new_password_check)
+                console.log(response)
+                navigate(LOGIN_ROUTE)
+        }
+        catch(e)
+        {
         alert(e)
-    }
-
+        }
     }
     return (
         <Container
         className = 'd-flex justify-content-center align-items-center '
         style = {{height: window.innerHeight - 54}}>
-        <Card style={{width: 900, borderRadius: 80, height: 520, fontFamily:"Play"}} className="p-5 #FFFAF4">
-            <h2 className="m-auto" style={{color:'black', height: 300, width: 239, position:'relative'}}>{isLogin ? 'Авторизация' : 'Забыл пароль'}</h2>
+        <Card style={{width: 925, borderRadius: 80, height: 746, fontFamily:"Play"}} className="p-5 #FFFAF4">
+            <h2 className="m-auto" style={{color:'black', height: 300, width: 239, position:'relative'}}><p style={{fontSize:"36px", width: 313, height: 43, paddingBottom:78}}>{isLogin ? '' : 'Изменить пароль'}</p></h2>
             <Form className="d-flex flex-column" style={{position:'relative', paddingBottom:'600px'}}>
+            <Form.Control
+                style={{borderRadius: 70, height: 71}}
+                className="mt-3"
+                size="lg"
+                placeholder = "Введите ваш email..."
+                value = {email}
+                onChange = { e => setEmail(e.target.value)}
+                type="email"
+                />
+
+                <Form.Control
+                style={{borderRadius: 70, height: 71}}
+                className="mt-3"
+                size="lg"
+                placeholder = "Введите ваш старый пароль..."
+                value = {old_password}
+                onChange = { e => setOldPassword(e.target.value)}
+                type="password"
+                />
                 
-                 <Row>
+                <Form.Control
+                style={{borderRadius: 70, height: 71}}
+                className="mt-3"
+                size="lg"
+                placeholder = "Введите ваш новый пароль..."
+                value = {new_password}
+                onChange = { e => setNewPassword(e.target.value)}
+                type="password"
+                />
+
+                <Form.Control
+                style={{borderRadius: 70, height: 71}}
+                className="mt-3"
+                size="lg"
+                placeholder = "Подтвердите новый пароль..."
+                value = {new_password_check}
+                onChange = { e => setNewPasswordCheck(e.target.value)}
+                type="password"
+                />
+
+                <Row>
                     <Col className="d-flex justify-content-between mt-3 pl-3 pr-3">
-                 <Button
-                 style={{borderRadius: 41, height:71, width:240}}
-                 variant={"outline-dark"}
-                 size="lg"
+                        <div><p style={{fontSize:"1.25rem", paddingTop: 15}}> <NavLink  to={LOGIN_ROUTE}> Вернуться к авторизации </NavLink></p></div>
+                <Button
+                style={{borderRadius: 41, height:71, width:240, }}
+                variant={"outline-dark"}
+                size="lg"
                             onClick={click}>
                        {isLogin ? '' : 'Изменить пароль'} 
-                 </Button>
-                 </Col>
-                 </Row>
-                 
+                </Button>
+                </Col>
+                </Row> 
             </Form>
         </Card>
         </Container>
