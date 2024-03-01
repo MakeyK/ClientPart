@@ -34,10 +34,10 @@ const Auth = observer(() => {
     return (
         <Container
         className = 'd-flex justify-content-center align-items-center '
-        style = {{height: window.innerHeight - 54}}>
-        <Card style={{width: 925, borderRadius: 80, height: 746, fontFamily:"Play"}} className="p-5 #FFFAF4">
-            <h2 className="m-auto" style={{color:'black', height: 300, width: 239, position:'relative'}}><p style={{fontSize:"36px", width: 313, height: 43, paddingBottom:78}}>{isLogin ? '' : 'Изменить пароль'}</p></h2>
-            <Form className="d-flex flex-column" style={{position:'relative', paddingBottom:'600px'}}>
+        style = {{width: 925, height: 646, marginTop: 178}}>
+        <Card style={{width: 925, borderRadius: 80, height: 646, fontFamily:"Play"}} className="p-5 #FFFAF4">
+                <p style={{fontSize:"36px", height: 43, display:"inline-block", position:"relative", margin:"auto"}}>{isLogin ? '' : 'Изменить пароль'}</p>
+            <Form className="d-flex flex-column" style={{position:'relative'}}>
             <Form.Control
                 style={{borderRadius: 70, height: 71}}
                 className="mt-3"

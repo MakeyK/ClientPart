@@ -1,5 +1,5 @@
 import React, {useContext, useState}  from "react";
-import {Card, Container, Form, Button, Col} from 'react-bootstrap'
+import {Card, Container, Form, Button, Col, ButtonGroup} from 'react-bootstrap'
 import { LOGIN_ROUTE, REGISTRATION_ROUTE, EDITPROFILE_ROUTE } from "../utils/consts";
 import Row from 'react-bootstrap/Row'
 import { useLocation, NavLink, useNavigate } from "react-router-dom";
@@ -7,6 +7,7 @@ import { login, registration } from "../http/userApi";
 import {observer} from "mobx-react-lite";
 import {Context} from "../index";
 import Avatar from 'react-avatar';
+
 
 
 
@@ -44,11 +45,14 @@ const EditProfile = observer(() => {
     return (
         <Container
         className = 'd-flex justify-content-center align-items-center'
-        style = {{height: window.innerHeight - 54}}>
+        style = {{width: 1402, height: 446, marginTop: 181}}>
         <Card style={{width: 1402, borderRadius: 36, height: 812, fontFamily:"Play"}} className="p-5 #FFFAF4">
-            <div> <p style={{fontFamily:"Play", color:"#A8A8A8"}}>Настройки</p></div>
+            <div> <p style={{fontFamily:"Play", color:"#A8A8A8"}}>Настройки</p>
+            
+            </div>
             <div class="navbar navbar-default navbar-fixed-top">
-            <ul class="list-group">
+                
+            <ul class="list-group"  style={{borderRadius: 24}} >
             <li class="list-group-item d-flex justify-content-between align-items-center" ><p style={{fontFamily:"Play"}}>
             Безопасность</p>
             <span class="badge badge-primary badge-pill"></span>
@@ -61,11 +65,29 @@ const EditProfile = observer(() => {
             Чёрный список</p>
             <span class="badge badge-primary badge-pill"></span>
             </li>
-            </ul>
+            </ul><p style={{paddingRight: "30vw"}}>
+            <Avatar name="Профиль" round={true} /></p>
+             {/*<Button
+                style={{borderRadius: 70, height:70, width:384}}
+                variant={"outline-dark"}
+                size="lg"
+                            onClick={click}>
+                       {isLogin ? '' : 'Изменить фото профиля'} 
+                </Button>
+                <Button
+                style={{borderRadius: 70, height:70, width:384}}
+                variant={"outline-dark"}
+                size="lg"
+                            onClick={click}>
+                       {isLogin ? '' : 'Изменить пароль'} 
+                </Button>
+    */}
             </div>
-            <div><p style={{padding:"0px 428px"}}>
-            <Avatar name="Профиль" round={true} sx={{width: 197, height: 183}}/></p>
+            
+            <div><p>
+            </p>
             </div>
+            
             <Form className="d-flex flex-column" style={{position:'relative', paddingBottom:'100px'}}>
                 <Row>
                     <Col className="d-flex justify-content-between mt-3 pl-3 pr-3">

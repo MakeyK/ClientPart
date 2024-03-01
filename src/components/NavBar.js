@@ -20,7 +20,7 @@ const NavBar = observer(() => {
     }
 
     return (
-        <Navbar bg="black" variant="black">
+        <Navbar style={{position: 'fixed'}} bg="black" variant="black" fixed='top'>
             <Container>
                 <NavLink style={{color:'white'}} to={MAIN_ROUTE}></NavLink>
                 {user.getisAuth() ?
