@@ -1,6 +1,6 @@
 import React, {useContext, useState}  from "react";
 import {Card, Container, Form, Button, Col} from 'react-bootstrap'
-import { LOGIN_ROUTE, REGISTRATION_ROUTE } from "../utils/consts";
+import { LOGIN_ROUTE, REGISTRATION_ROUTE, EDITPROFILE_ROUTE } from "../utils/consts";
 import Row from 'react-bootstrap/Row'
 import { useLocation, NavLink, useNavigate } from "react-router-dom";
 import { login, registration } from "../http/userApi";
@@ -31,7 +31,7 @@ const Registration = observer(() => {
     }
     user.setUser()
     user.setIsAuth(true)
-    navigate(LOGIN_ROUTE)}
+    navigate(EDITPROFILE_ROUTE)}
     catch(e){
     alert(e)
     }
@@ -77,7 +77,7 @@ const Registration = observer(() => {
                 <Row>
                     <Col className="d-flex justify-content-between mt-3 pl-3 pr-3">
                 {isLogin? 
-                <div> <NavLink to={REGISTRATION_ROUTE}> Регистрация </NavLink> </div>
+                <div> <NavLink to={EDITPROFILE_ROUTE}> Регистрация </NavLink> </div>
                 :
                 <div> <p style={{fontSize:"24px"}}>Есть аккаунт? <NavLink to={LOGIN_ROUTE} variant={"outline-link"}>Войти</NavLink> </p> </div>}
                  <Button

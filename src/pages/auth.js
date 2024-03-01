@@ -1,6 +1,6 @@
 import React, {useContext, useState}  from "react";
 import {Card, Container, Form, Button, Col} from 'react-bootstrap'
-import { FORGOTPASSWORD_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE } from "../utils/consts";
+import { EDITPROFILE_ROUTE, FORGOTPASSWORD_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE } from "../utils/consts";
 import Row from 'react-bootstrap/Row'
 import { useLocation, NavLink, useNavigate } from "react-router-dom";
 import { login, registration } from "../http/userApi";
