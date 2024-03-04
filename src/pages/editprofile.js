@@ -1,5 +1,5 @@
 import React, {useContext, useState}  from "react";
-import {Card, Container, Form, Button, Col, ButtonGroup} from 'react-bootstrap'
+import {Card, Container, Form, Button, Col, ButtonGroup, ListGroup} from 'react-bootstrap'
 import { LOGIN_ROUTE, REGISTRATION_ROUTE, EDITPROFILE_ROUTE } from "../utils/consts";
 import Row from 'react-bootstrap/Row'
 import { useLocation, NavLink, useNavigate } from "react-router-dom";
@@ -19,6 +19,7 @@ const EditProfile = observer(() => {
     const location = useLocation()
     const isLogin = location.pathname === LOGIN_ROUTE
     const [email, setEmail] = useState('')
+    const [nickname, setNickname] = useState('')
     const [password,setPassword] = useState('')
     const [password_check,setPasswordCheck] = useState('')
     const click = async () =>{
@@ -46,13 +47,13 @@ const EditProfile = observer(() => {
         <Container
         className = 'd-flex justify-content-center align-items-center'
         style = {{width: 1402, height: 446, marginTop: 181}}>
-        <Card style={{width: 1402, borderRadius: 36, height: 812, fontFamily:"Play"}} className="p-5 #FFFAF4">
-            <div> <p style={{fontFamily:"Play", color:"#A8A8A8"}}>Настройки</p>
+        <Card style={{width: 1402, borderRadius: 36, height: 712, fontFamily:"Play", display:"inline-block", position:"relative", margin:"auto"}} className="p-5 #FFFAF4">
+            <div> <p style={{fontFamily:"Play", color:"#A8A8A8", marginLeft:"58px"}}>Настройки</p>
             
             </div>
             <div class="navbar navbar-default navbar-fixed-top">
                 
-            <ul class="list-group"  style={{borderRadius: 24}} >
+            <ul class="list-group"  style={{borderRadius: 24,marginLeft:"58px", border: "1px solid"}} >
             <li class="list-group-item d-flex justify-content-between align-items-center" ><p style={{fontFamily:"Play"}}>
             Безопасность</p>
             <span class="badge badge-primary badge-pill"></span>
@@ -65,16 +66,56 @@ const EditProfile = observer(() => {
             Чёрный список</p>
             <span class="badge badge-primary badge-pill"></span>
             </li>
-            </ul><p style={{paddingRight: "30vw"}}>
-            <Avatar name="Профиль" round={true} /></p>
-             {/*<Button
-                style={{borderRadius: 70, height:70, width:384}}
+            </ul><p style={{}}>
+            <Avatar size={"197px"} round src="https://cybersport.metaratings.ru/storage/images/ae/34/ae3485265fec14436535f65ba0b5c08a.jpg"/></p>
+            <p style={{paddingBottom: 100}}>
+            <Button
+                style={{borderRadius: 41, height:70, width:384}}
                 variant={"outline-dark"}
                 size="lg"
                             onClick={click}>
                        {isLogin ? '' : 'Изменить фото профиля'} 
-                </Button>
+                </Button></p>
+                <p style={{position: "absolute", paddingLeft: 816, paddingBottom: 315}}>
                 <Button
+                style={{borderRadius: 41, height:70, width:384}}
+                variant={"outline-dark"}
+                size="lg"
+                            onClick={click}>
+                       {isLogin ? '' : 'Изменить пароль'} 
+                </Button>
+                </p>
+                <div style={{marginBottom:100}}> <p style={{fontFamily:"Play", color:"#A8A8A8", marginBottom:"9px", marginTop:"79px", marginLeft:"58px"}}>Ваше имя</p>
+                <Form.Control
+                style={{borderRadius: 70, height: 70, position:'relative',paddingRight: "15vw",marginLeft:"58px", border: "1px solid"}}
+                className="mt-3"
+                size="lg"
+                placeholder = "Ваше имя"
+                value = {nickname}
+                onChange = { e => setNickname(e.target.value)}
+                
+                />
+
+                <p style={{fontFamily:"Play", color:"#A8A8A8", marginBottom:"9px", marginTop:"38px", marginLeft:"58px"}}>Ваше почта</p>
+                <Form.Control
+                style={{borderRadius: 70, height: 70, paddingRight: "15vw", border: "1px solid",marginLeft:"58px"}}
+                className="mt-3"
+                size="lg"
+                placeholder = "Ваша почта"
+                value = {email}
+                onChange = { e => setEmail(e.target.value)}
+                type="email"
+                /></div>
+
+                <div style={{marginBottom:100}}> <p style={{fontFamily:"Play", color:"#A8A8A8", marginBottom:"9px", marginTop:"79px", marginLeft:"58px"}}>Ваши друзья</p>
+                </div>
+                <ul class="list-group"  style={{borderRadius: 24,marginLeft:"58px", border: "1px solid"}} >
+                <li class="list-group-item d-flex justify-content-between align-items-center" ><p style={{fontFamily:"Play"}}>
+                Mak123</p>
+                <span class="badge badge-primary badge-pill"></span>
+                </li>
+                </ul>
+             {/*   <Button
                 style={{borderRadius: 70, height:70, width:384}}
                 variant={"outline-dark"}
                 size="lg"
@@ -83,18 +124,6 @@ const EditProfile = observer(() => {
                 </Button>
     */}
             </div>
-            
-            <div><p>
-            </p>
-            </div>
-            
-            <Form className="d-flex flex-column" style={{position:'relative', paddingBottom:'100px'}}>
-                <Row>
-                    <Col className="d-flex justify-content-between mt-3 pl-3 pr-3">
-                 </Col>
-                 </Row>
-                 
-            </Form>
         </Card>
         </Container>
     );

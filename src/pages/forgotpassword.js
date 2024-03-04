@@ -39,7 +39,7 @@ const Auth = observer(() => {
                 <p style={{fontSize:"36px", height: 43, display:"inline-block", position:"relative", margin:"auto"}}>{isLogin ? '' : 'Изменить пароль'}</p>
             <Form className="d-flex flex-column" style={{position:'relative'}}>
             <Form.Control
-                style={{borderRadius: 70, height: 71}}
+                style={{borderRadius: 70, height: 71, border: "1px solid"}}
                 className="mt-3"
                 size="lg"
                 placeholder = "Введите ваш email..."
@@ -49,7 +49,7 @@ const Auth = observer(() => {
                 />
 
                 <Form.Control
-                style={{borderRadius: 70, height: 71}}
+                style={{borderRadius: 70, height: 71, border: "1px solid"}}
                 className="mt-3"
                 size="lg"
                 placeholder = "Введите ваш старый пароль..."
@@ -59,7 +59,7 @@ const Auth = observer(() => {
                 />
                 
                 <Form.Control
-                style={{borderRadius: 70, height: 71}}
+                style={{borderRadius: 70, height: 71, border: "1px solid"}}
                 className="mt-3"
                 size="lg"
                 placeholder = "Введите ваш новый пароль..."
@@ -69,7 +69,7 @@ const Auth = observer(() => {
                 />
 
                 <Form.Control
-                style={{borderRadius: 70, height: 71}}
+                style={{borderRadius: 70, height: 71, border: "1px solid"}}
                 className="mt-3"
                 size="lg"
                 placeholder = "Подтвердите новый пароль..."
