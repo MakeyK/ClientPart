@@ -1,6 +1,6 @@
 import React, {useContext, useState}  from "react";
 import {Card, Container, Form, Button, Col, ButtonGroup, ListGroup} from 'react-bootstrap'
-import { LOGIN_ROUTE, REGISTRATION_ROUTE, EDITPROFILE_ROUTE } from "../utils/consts";
+import { LOGIN_ROUTE, REGISTRATION_ROUTE, EDITPROFILE_ROUTE, MAIN_ROUTE, FORGOTPASSWORD_ROUTE } from "../utils/consts";
 import Row from 'react-bootstrap/Row'
 import { useLocation, NavLink, useNavigate } from "react-router-dom";
 import { login, registration } from "../http/userApi";
@@ -15,33 +15,43 @@ const EditProfile = observer(() => {
     document.body.style.backgroundImage ="url(/cloud.png)";
     document.body.style.backgroundColor="#ebebeb"
     const {user} = useContext(Context)
-    const navigate =useNavigate()
+    const navigate = useNavigate()
     const location = useLocation()
     const isLogin = location.pathname === LOGIN_ROUTE
     const [email, setEmail] = useState('')
     const [nickname, setNickname] = useState('')
     const [password,setPassword] = useState('')
     const [password_check,setPasswordCheck] = useState('')
+
+    const forgotpassword = async() => {
+        let forgotpassword = `forgotpassword`
+        navigate(FORGOTPASSWORD_ROUTE)
+    }
+
     const click = async () =>{
     
     console.log(email)
-    try{
-    if (isLogin){
-    const response = await login(email, password, password_check)
-    console.log(response)}
-    else{
-    console.log(email)
-    const response = await registration(email, password, password_check)
-    console.log(response)
-    }
-    user.setUser()
-    user.setIsAuth(true)
-    navigate(LOGIN_ROUTE)}
-    catch(e)
+    try
     {
-        alert(e)
+        if (isLogin)
+        {
+            const response = await login(email, password, password_check)
+            console.log(response)
+        }
+        else
+        {
+            console.log(email)
+            const response = await registration(email, password, password_check)
+            console.log(response)
+        }
+        user.setUser()
+        user.setIsAuth(true)
+        navigate(MAIN_ROUTE)
     }
-    
+        catch(e)
+        {
+            alert(e)
+        }
     }
     return (
         <Container
@@ -81,7 +91,7 @@ const EditProfile = observer(() => {
                 style={{borderRadius: 41, height:70, width:384}}
                 variant={"outline-dark"}
                 size="lg"
-                            onClick={click}>
+                            onClick={forgotpassword}>
                        {isLogin ? '' : 'Изменить пароль'} 
                 </Button>
                 </p>
@@ -96,7 +106,7 @@ const EditProfile = observer(() => {
                 
                 />
 
-                <p style={{fontFamily:"Play", color:"#A8A8A8", marginBottom:"9px", marginTop:"38px", marginLeft:"58px"}}>Ваше почта</p>
+                <p style={{fontFamily:"Play", color:"#A8A8A8", marginBottom:"9px", marginTop:"38px", marginLeft:"58px"}}>Ваша почта</p>
                 <Form.Control
                 style={{borderRadius: 70, height: 70, paddingRight: "15vw", border: "1px solid",marginLeft:"58px"}}
                 className="mt-3"
@@ -108,13 +118,10 @@ const EditProfile = observer(() => {
                 /></div>
 
                 <div style={{marginBottom:100}}> <p style={{fontFamily:"Play", color:"#A8A8A8", marginBottom:"9px", marginTop:"79px", marginLeft:"58px"}}>Ваши друзья</p>
-                </div>
-                <ul class="list-group"  style={{borderRadius: 24,marginLeft:"58px", border: "1px solid"}} >
-                <li class="list-group-item d-flex justify-content-between align-items-center" ><p style={{fontFamily:"Play"}}>
-                Mak123</p>
-                <span class="badge badge-primary badge-pill"></span>
-                </li>
+                <ul class="list-group"  style={{borderRadius: 24,marginLeft:"58px", border: "1px solid", height: 231, width: 503}} >
+                
                 </ul>
+                </div>
              {/*   <Button
                 style={{borderRadius: 70, height:70, width:384}}
                 variant={"outline-dark"}
