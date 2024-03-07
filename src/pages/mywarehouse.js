@@ -7,7 +7,7 @@ import { changePassword, check, login, registration } from "../http/userApi";
 import {observer} from "mobx-react-lite";
 import {Context} from "../index";
 
-const Auth = observer(() => {
+const MyWareHouse = observer(() => {
     document.body.style.backgroundImage ="url(/cloud.png)";
     document.body.style.backgroundColor="#ebebeb"
     const {user} = useContext(Context)
@@ -15,14 +15,12 @@ const Auth = observer(() => {
     const location = useLocation()
     const isLogin = location.pathname === LOGIN_ROUTE
     const [email, setEmail] = useState('')
-    const [old_password, setOldPassword] = useState('')
-    const [new_password,setNewPassword] = useState('')
-    const [new_password_check,setNewPasswordCheck] = useState('')
+
     const click = async () =>
     {
         try
         {
-                const response = await changePassword(email, old_password, new_password,  new_password_check)
+                const response = await changePassword(email)
                 console.log(response)
                 navigate(LOGIN_ROUTE)
         }
@@ -33,8 +31,17 @@ const Auth = observer(() => {
     }
     return (
         <Container
-        className = 'd-flex justify-content-center align-items-center'
+        className = 'd-flex justify-content-center'
         style = {{width: 1402, height: 646, marginTop: 152, paddingLeft: 457}}>
+        <Card style={{width: 925, height: 646, fontFamily:"Play", position: 'absolute'}} className="p-5 #FFFFFF4D">
+                <p style={{fontSize:"36px", height: 43, display:"inline-block", position:"relative", margin:"auto"}}>{isLogin ? '' : ''}</p>
+
+                <Row>
+                    <Col className="d-flex justify-content-between mt-3 pl-3 pr-3">    
+                </Col>
+                </Row> 
+        </Card>
+
         <Card style={{width: 925, borderRadius: 36, height: 646, fontFamily:"Play"}} className="p-5 #FFFFFF4D">
                 <p style={{fontSize:"36px", height: 43, display:"inline-block", position:"relative", margin:"auto"}}>{isLogin ? '' : ''}</p>
 
@@ -47,4 +54,4 @@ const Auth = observer(() => {
     );
 });
 
-export default Auth;
+export default MyWareHouse;
