@@ -6,6 +6,8 @@ import Image from 'react-bootstrap/Image';
 const MainP = () =>
 {
     document.body.style.backgroundColor ="#D9D9D9";
+    document.body.style.backgroundRepeat = "no-repeat";
+    document.body.style.backgroundPositionY = "450px"
     return (
         <Container className="d-flex justify-content-center align-items-right"
         style = {{height: window.innerHeight - 54}}>

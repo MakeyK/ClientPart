@@ -9,6 +9,8 @@ import {Context} from "../index";
 
 const Registration = observer(() => {
     document.body.style.backgroundImage ="url(/cloud.png)";
+    document.body.style.backgroundRepeat = "no-repeat";
+    document.body.style.backgroundPositionY = "450px"
     document.body.style.backgroundColor="#ebebeb"
     const {user} = useContext(Context)
     const navigate =useNavigate()

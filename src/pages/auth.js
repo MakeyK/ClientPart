@@ -9,6 +9,8 @@ import {Context} from "../index";
 
 const Auth = observer(() => {
     document.body.style.backgroundImage ="url(/cloud.png)";
+    document.body.style.backgroundRepeat = "no-repeat";
+    document.body.style.backgroundPositionY = "450px"
     document.body.style.backgroundColor="#ebebeb"
     const {user} = useContext(Context)
     const navigate =useNavigate()
@@ -66,7 +68,7 @@ const Auth = observer(() => {
                 <div> <p class="text-black" style={{fontSize:"24px"}}> Нет аккаунта? <NavLink to={REGISTRATION_ROUTE} variant={"outline-link"} style={{paddingRight:10}}>Регистрация</NavLink> | <NavLink to={FORGOTPASSWORD_ROUTE} style={{paddingLeft:10}} variant={"outline-link"}>Забыл пароль</NavLink></p>
                 </div>
                 :
-                <div> <NavLink to={LOGIN_ROUTE}> Войти </NavLink> </div>}
+                <div> <NavLink to={EDITPROFILE_ROUTE}> Войти </NavLink> </div>}
                  <Button
                  style={{borderRadius: 41, height:71, width:195}}
                  variant={"outline-dark"}

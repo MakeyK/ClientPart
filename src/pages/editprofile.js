@@ -1,6 +1,6 @@
 import React, {useContext, useState}  from "react";
-import {Card, Container, Form, Button, Col, ButtonGroup, ListGroup} from 'react-bootstrap'
-import { LOGIN_ROUTE, REGISTRATION_ROUTE, EDITPROFILE_ROUTE, MAIN_ROUTE, FORGOTPASSWORD_ROUTE } from "../utils/consts";
+import {Card, Container, Form, Button, Col } from 'react-bootstrap'
+import { LOGIN_ROUTE, REGISTRATION_ROUTE, EDITPROFILE_ROUTE, MAIN_ROUTE, FORGOTPASSWORD_ROUTE, FORGOTPASSWORD_ROUTE2 } from "../utils/consts";
 import Row from 'react-bootstrap/Row'
 import { useLocation, NavLink, useNavigate } from "react-router-dom";
 import { login, registration } from "../http/userApi";
@@ -10,9 +10,10 @@ import Avatar from 'react-avatar';
 
 
 
-
 const EditProfile = observer(() => {
-    document.body.style.backgroundImage ="url(/cloud.png)";
+    document.body.style.backgroundImage = "url(/cloud.png)";
+    document.body.style.backgroundRepeat = "no-repeat";
+    document.body.style.backgroundPositionY = "450px"
     document.body.style.backgroundColor="#ebebeb"
     const {user} = useContext(Context)
     const navigate = useNavigate()
@@ -25,7 +26,7 @@ const EditProfile = observer(() => {
 
     const forgotpassword = async() => {
         let forgotpassword = `forgotpassword`
-        navigate(FORGOTPASSWORD_ROUTE)
+        navigate(FORGOTPASSWORD_ROUTE2)
     }
 
     const click = async () =>{
@@ -54,9 +55,11 @@ const EditProfile = observer(() => {
         }
     }
     return (
+        
         <Container
         className = 'd-flex justify-content-center align-items-center'
         style = {{width: 1402, height: 446, marginTop: 181}}>
+            
         <Card style={{width: 1402, borderRadius: 36, height: 712, fontFamily:"Play", display:"inline-block", position:"relative", margin:"auto"}} className="p-5 #FFFAF4">
             <div> <p style={{fontFamily:"Play", color:"#A8A8A8", marginLeft:"58px"}}>Настройки</p>
             
@@ -132,6 +135,7 @@ const EditProfile = observer(() => {
     */}
             </div>
         </Card>
+        
         </Container>
     );
 });

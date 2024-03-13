@@ -1,6 +1,6 @@
 import React, {useContext, useState}  from "react";
 import {Card, Container, Form, Button, Col, Nav} from 'react-bootstrap'
-import { LOGIN_ROUTE, REGISTRATION_ROUTE, FORGOTPASSWORD_ROUTE } from "../utils/consts";
+import { LOGIN_ROUTE, REGISTRATION_ROUTE, FORGOTPASSWORD_ROUTE, EDITPROFILE_ROUTE } from "../utils/consts";
 import Row from 'react-bootstrap/Row'
 import { useLocation, NavLink, useNavigate } from "react-router-dom";
 import { changePassword, check, login, registration } from "../http/userApi";
@@ -9,6 +9,8 @@ import {Context} from "../index";
 
 const Auth = observer(() => {
     document.body.style.backgroundImage ="url(/cloud.png)";
+    document.body.style.backgroundRepeat = "no-repeat";
+    document.body.style.backgroundPositionY = "450px"
     document.body.style.backgroundColor="#ebebeb"
     const {user} = useContext(Context)
     const navigate =useNavigate()
@@ -80,7 +82,7 @@ const Auth = observer(() => {
 
                 <Row>
                     <Col className="d-flex justify-content-between mt-3 pl-3 pr-3">
-                        <div><p style={{fontSize:"1.25rem", paddingTop: 15}}> <NavLink  to={LOGIN_ROUTE}> Вернуться к редактированию профиля </NavLink></p></div>
+                        <div><p style={{fontSize:"1.25rem", paddingTop: 15}}> <NavLink  to={EDITPROFILE_ROUTE}> Вернуться к редактированию профиля </NavLink></p></div>
                 <Button
                 style={{borderRadius: 41, height:71, width:240, }}
                 variant={"outline-dark"}
