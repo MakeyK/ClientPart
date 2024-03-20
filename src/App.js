@@ -9,7 +9,6 @@ function App() {
       <NavBar/>
       <AppRouter/> 
       
- 
     </BrowserRouter> 
   ); 
 } 
