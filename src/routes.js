@@ -5,8 +5,9 @@ import ForgotPassword from "./pages/forgotpassword"
 import EditProfile from "./pages/editprofile"
 import MyStorage from "./pages/mystorage"
 import ForgotPassword2 from "./pages/forgotpassword2"
+import Recent from "./pages/recent"
 //import Admin from "./pages/admin"
-import {LOGIN_ROUTE, REGISTRATION_ROUTE, MAIN_ROUTE, FORGOTPASSWORD_ROUTE, EDITPROFILE_ROUTE, FORGOTPASSWORD_ROUTE2, MYSTORAGE_ROUTE } from "./utils/consts"
+import {LOGIN_ROUTE, REGISTRATION_ROUTE, MAIN_ROUTE, FORGOTPASSWORD_ROUTE, EDITPROFILE_ROUTE, FORGOTPASSWORD_ROUTE2, MYSTORAGE_ROUTE, RECENT_ROUTE } from "./utils/consts"
 
 
 export const authRoutes = [
@@ -45,5 +46,9 @@ export const publicRoutes = [
     {
         path: MYSTORAGE_ROUTE,
         Component: MyStorage
+    },
+    {
+        path: RECENT_ROUTE,
+        Component: Recent
     }
 ]

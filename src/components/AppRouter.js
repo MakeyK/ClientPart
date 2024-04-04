@@ -1,7 +1,7 @@
 import React, { useContext } from "react"; 
 import {Routes, Route, Navigate} from 'react-router-dom'  
 import { authRoutes, publicRoutes } from "../routes"; 
-import { EDITPROFILE_ROUTE, FORGOTPASSWORD_ROUTE, LOGIN_ROUTE, MYSTORAGE_ROUTE, REGISTRATION_ROUTE, FORGOTPASSWORD_ROUTE2} from "../utils/consts"; 
+import { EDITPROFILE_ROUTE, FORGOTPASSWORD_ROUTE, LOGIN_ROUTE, MYSTORAGE_ROUTE, REGISTRATION_ROUTE, FORGOTPASSWORD_ROUTE2, RECENT_ROUTE} from "../utils/consts"; 
 import { Context } from "../index"; 
 let isAuth = true 
 const AppRouter = () => { 
@@ -38,6 +38,14 @@ const AppRouter = () => {
         <Route>
         {publicRoutes.map(({path, Component}) =>
         <Route  path="*" element = {<Navigate> to={FORGOTPASSWORD_ROUTE2}</Navigate>} replace/>
+        
+    )} 
+        
+    </Route>
+
+    <Route>
+        {publicRoutes.map(({path, Component}) =>
+        <Route  path="*" element = {<Navigate> to={RECENT_ROUTE}</Navigate>} replace/>
         
     )} 
         
