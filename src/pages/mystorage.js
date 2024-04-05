@@ -1,18 +1,22 @@
 import React, {useContext, useState}  from "react";
 import {Card, Container, Form, Button, Col, Nav, ListGroup} from 'react-bootstrap'
-import { LOGIN_ROUTE, REGISTRATION_ROUTE, FORGOTPASSWORD_ROUTE,RECENT_ROUTE, FAVORITE_ROUTE, BASKET_ROUTE } from "../utils/consts";
+import { LOGIN_ROUTE, REGISTRATION_ROUTE, FORGOTPASSWORD_ROUTE,RECENT_ROUTE, FAVORITE_ROUTE, BASKET_ROUTE, MYSTORAGE_ROUTE } from "../utils/consts";
 import Row from 'react-bootstrap/Row'
 import { useLocation, NavLink, useNavigate } from "react-router-dom";
 import { changePassword, check, login, registration } from "../http/userApi";
 import {observer} from "mobx-react-lite";
+import Image from 'react-bootstrap/Image';
 import {Context} from "../index";
-// import Chelik from '../Files/Chelik.jpg'
+import Clock from '../Files/Clock.png'
+import Korzina from '../Files/Korzina.png'
+import Star from '../Files/Star.png'
+import Chelik from '../Files/Chelik.png'
 
 const Auth = observer(() => {
     document.body.style.backgroundImage ="url(/cloud.png)";
     document.body.style.backgroundRepeat = "no-repeat";
     document.body.style.backgroundPositionY = "450px"
-    document.body.style.backgroundColor="#D9D9D9"
+    document.body.style.backgroundColor="#D0D0D0"
     const {user} = useContext(Context)
     const navigate =useNavigate()
     const location = useLocation()
@@ -34,6 +38,10 @@ const Auth = observer(() => {
         let favorite = `favorite`
         navigate(FAVORITE_ROUTE)
     }
+    const mystorage = async() => {
+        let mystorage = `mystorage`
+        navigate(MYSTORAGE_ROUTE)
+    }
 
     const click = async () =>
     {
@@ -51,36 +59,53 @@ const Auth = observer(() => {
     return (
         <div
         style = {{}}>
-        <Card style={{ width: 428, height: 856, marginTop: 110, fontFamily:"Play", fontWeight: 'bold', backgroundColor: '#FFFFFF4D'}}>
-                {/* <img src={Chelik} style={{}}/> */}
+        <Card style={{ width: 428, height: 856, marginTop: 110, fontFamily:"Play", fontWeight: 'bold', backgroundColor: '#DBDBDB'}}>
+                <p style={{paddingBottom:50, paddingLeft: 50}}>
                 <Button
                             size={"lg"}
-                            variant={"outline-link"}
-                            onClick={() => {user.setIsAuth(true)}}> <div> <p class="text-#363232" style={{fontWeight:'bold', borderRadius: 37,border: "1px solid"}}> МОЁ ХРАНИЛИЩЕ</p></div>
-                </Button>
+                            variant={"outline-dark"}
+                            style={{fontWeight:'bold', borderRadius:37}}
+                            onClick={mystorage}>
+                                <img src={Chelik} style={{width: 67}}/>
+                            {isLogin ? '' : 'МОЁ ХРАНИЛИЩЕ'}
+                </Button></p>
+                <p style={{paddingBottom:50, paddingLeft: 50}}>
                 <Button
+
                             size={"lg"}
-                            style={{fontWeight:'bold'}}
-                            variant={"outline-link"}
+                            style={{fontWeight:'bold', borderRadius:37}}
+                            variant={"outline-dark-link"}
                             onClick={recent}>
+                                <img src={Clock} style={{width: 67}}/>
                             {isLogin ? '' : 'НЕДАВНИЕ'}
-                </Button>   
+                </Button></p>
+                <p style={{paddingBottom:50, paddingLeft: 50}}>
                 <Button
                             size={"lg"}
-                            variant={"outline-link"}
-                            style={{fontWeight:'bold'}}
+                            variant={"outline-dark-link"}
+                            style={{fontWeight:'bold', borderRadius:37}}
                             onClick={favorite}>
+                                <img src={Star} style={{width: 67}}/>
                             {isLogin ? '' : 'ИЗБРАННОЕ'}
-                </Button>
+                </Button></p>
+                <p style={{paddingBottom:50, paddingLeft: 50}}>
                 <Button
                             size={"lg"}
-                            style={{fontWeight:'bold'}}
-                            variant={"outline-link"}
+                            style={{fontWeight:'bold', borderRadius:37}}
+                            variant={"outline-link-dark"}
                             onClick={basket}>
+                                <img src={Korzina} style={{width: 67}}/>
                             {isLogin ? '' : 'КОРЗИНА'}
-                </Button>
-                
-        <Card style={{width: 1380, borderRadius: 36, height: 760, fontFamily:"Play", marginTop: 50, marginLeft: 457, position:'absolute', backgroundColor: '#FFFFFF4D'}}>
+                </Button></p>
+                <p style={{paddingLeft: 50, position:'relative'}}>
+                <Button
+                            size={"lg"}
+                            style={{fontWeight:'bold', borderRadius:37, width: 332}}
+                            variant={"outline-dark"}
+                            onClick={basket}>
+                            {isLogin ? '' : 'Увеличить объём хранилища'}
+                </Button></p>
+        <Card style={{width: 1380, borderRadius: 36, height: 760, fontFamily:"Play", marginTop: 50, marginLeft: 457, position:'absolute', backgroundColor: '#DBDBDB'}}>
                 
         </Card>
     </Card>
