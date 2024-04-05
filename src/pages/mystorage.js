@@ -11,6 +11,8 @@ import Clock from '../Files/Clock.png'
 import Korzina from '../Files/Korzina.png'
 import Star from '../Files/Star.png'
 import Chelik from '../Files/Chelik.png'
+import Table from 'react-bootstrap/Table';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 const Auth = observer(() => {
     document.body.style.backgroundImage ="url(/cloud.png)";
@@ -60,7 +62,7 @@ const Auth = observer(() => {
         <div
         style = {{}}>
         <Card style={{ width: 428, height: 856, marginTop: 110, fontFamily:"Play", fontWeight: 'bold', backgroundColor: '#DBDBDB'}}>
-                <p style={{paddingBottom:50, paddingLeft: 50}}>
+                <p style={{paddingBottom:50, paddingLeft: 50, paddingTop: 48}}>
                 <Button
                             size={"lg"}
                             variant={"outline-dark"}
@@ -106,7 +108,34 @@ const Auth = observer(() => {
                             {isLogin ? '' : 'Увеличить объём хранилища'}
                 </Button></p>
         <Card style={{width: 1380, borderRadius: 36, height: 760, fontFamily:"Play", marginTop: 50, marginLeft: 457, position:'absolute', backgroundColor: '#DBDBDB'}}>
-                
+            <p style={{paddingLeft: 81, paddingTop: 58, fontSize: 28}}>МОЁ ХРАНИЛИЩЕ</p>
+            <Table striped bordered hover style={{width: 255, height:42, marginLeft: 76, textAlign: 'center'}}>
+      <thead>
+        <tr>
+          <th style={{fontSize: 16}}> <NavLink style={{color:'black'}}> Файлы</NavLink></th>
+          <th style={{fontSize: 16}}> <NavLink style={{color:'black'}}> Папки </NavLink></th>
+        </tr>
+      </thead>
+        </Table>
+        <Dropdown style={{ position:'absolute',paddingTop: 117, paddingLeft: 375}}>
+        <Dropdown.Toggle style={{borderRadius:26, fontWeight:'bold',width: 185, height: 42,}} variant="light" id="dropdown-basic">
+             Пользователи
+        </Dropdown.Toggle>
+        <Dropdown.Menu style={{fontWeight:'bold', borderRadius: 26, width: 185, paddingLeft: 5}}>
+            <Dropdown.Item style={{borderRadius:26, width: 175}} href="#">Toxic</Dropdown.Item>
+            <Dropdown.Item style={{borderRadius:26, width: 175}} href="#">Serotonin</Dropdown.Item>
+        </Dropdown.Menu>
+        </Dropdown>
+
+        <Dropdown style={{ position:'absolute',paddingTop: 117, paddingLeft: 585}}>
+        <Dropdown.Toggle style={{borderRadius:26, fontWeight:'bold',width: 185, height: 42,}} variant="light" id="dropdown-basic">
+             Сортировать
+        </Dropdown.Toggle>
+        <Dropdown.Menu style={{fontWeight:'bold', borderRadius: 26, width: 185, paddingLeft: 5}}>
+            <Dropdown.Item style={{borderRadius:26, width: 175}} href="#">Папки</Dropdown.Item>
+        </Dropdown.Menu>
+        </Dropdown>
+
         </Card>
     </Card>
         </div>
