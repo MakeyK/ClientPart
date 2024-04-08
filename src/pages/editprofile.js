@@ -1,4 +1,4 @@
-import React, {useContext, useState}  from "react";
+import React, {useContext, useRef, useState}  from "react";
 import {Card, Container, Form, Button, Col } from 'react-bootstrap'
 import { LOGIN_ROUTE, REGISTRATION_ROUTE, EDITPROFILE_ROUTE, MAIN_ROUTE, FORGOTPASSWORD_ROUTE, FORGOTPASSWORD_ROUTE2 } from "../utils/consts";
 import Row from 'react-bootstrap/Row'
@@ -7,7 +7,7 @@ import { login, registration } from "../http/userApi";
 import {observer} from "mobx-react-lite";
 import {Context} from "../index";
 import Avatar from 'react-avatar';
-
+import Modal from 'react-modal';
 
 
 const EditProfile = observer(() => {
@@ -18,6 +18,9 @@ const EditProfile = observer(() => {
     const {user} = useContext(Context)
     const navigate = useNavigate()
     const location = useLocation()
+    const filepiker = useRef(null)
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [uploadded, setUploaded] = useState();
     const isLogin = location.pathname === LOGIN_ROUTE
     const [email, setEmail] = useState('')
     const [nickname, setNickname] = useState('')
@@ -29,8 +32,38 @@ const EditProfile = observer(() => {
         navigate(FORGOTPASSWORD_ROUTE2)
     }
 
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const openModal = () => {
+      setModalIsOpen(true);
+    };
+    const closeModal = () => {
+      setModalIsOpen(false);
+    };
+
+    const modalContent = (
+        <div style={{textAlign:'center', marginTop: 427}} className="disk_upload">
+          <p style={{fontFamily:"Play", display:'inline-block'}}>
+          <Button type='file-input' 
+          className="disk__upload-label"
+          id="disk__upload-input"
+            // <label htmlFor="disk__upload input" className="disk__upload-label"> Загрузить файл</label>
+            // <input type='file' id="disk__upload-input" className="disk__upload-input"/>
+          name="file_avatar"
+          style={{borderRadius: 41, height:70, width:384}}
+          variant={"outline-dark"}
+          size="lg">
+             Открыть изображние
+             </Button>
+          <Button 
+          style={{borderRadius: 41, height:70, width:384}}
+          variant={"outline-dark"}
+          size="lg"
+          onClick={closeModal}
+          > Применить изменения</Button></p>
+        </div>
+      );
+
     const click = async () =>{
-    
     console.log(email)
     try
     {
@@ -79,16 +112,24 @@ const EditProfile = observer(() => {
             Чёрный список</p>
             <span class="badge badge-primary badge-pill"></span>
             </li>
-            </ul><p style={{}}>
+            </ul><p>
             <Avatar size={"197px"} round src="https://cybersport.metaratings.ru/storage/images/ae/34/ae3485265fec14436535f65ba0b5c08a.jpg"/></p>
             <p style={{paddingBottom: 100}}>
             <Button
+                name="file_avatar"
+                type="file"
                 style={{borderRadius: 41, height:70, width:384}}
                 variant={"outline-dark"}
                 size="lg"
-                            onClick={click}>
+                
+                            onClick={openModal}>
                        {isLogin ? '' : 'Изменить фото профиля'} 
-                </Button></p>
+                </Button>
+                <Modal isOpen={modalIsOpen} onRequestClose={closeModal} >
+                {modalContent}
+                </Modal>
+                </p>
+
                 <p style={{position: "absolute", paddingLeft: 816, paddingBottom: 315}}>
                 <Button
                 style={{borderRadius: 41, height:70, width:384}}

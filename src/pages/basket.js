@@ -59,7 +59,7 @@ const Auth = observer(() => {
         <div
         style = {{}}>
         <Card style={{ width: 428, height: 856, marginTop: 110, fontFamily:"Play", fontWeight: 'bold', backgroundColor: '#DBDBDB'}}>
-        <p style={{paddingBottom:50, paddingLeft: 50}}>
+        <p style={{paddingBottom:50, paddingLeft: 50, paddingTop: 48}}>
                 <Button
                             size={"lg"}
                             variant={"outline-dark-link"}
