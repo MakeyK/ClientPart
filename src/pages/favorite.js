@@ -96,9 +96,9 @@ const Auth = observer(() => {
                                 <img src={Korzina} style={{width: 67}}/>
                             {isLogin ? '' : 'КОРЗИНА'}
                 </Button></p>
-                <p style={{paddingLeft: 50, position:'relative'}}>
+                <p style={{paddingLeft: 50, position:'relative',fontFamily:"Rubik Mono One"}}>
                 <Button
-                            size={"lg"}
+                            size={"xs"}
                             style={{fontWeight:'bold', borderRadius:37, width: 332}}
                             variant={"outline-dark"}
                             onClick={basket}>

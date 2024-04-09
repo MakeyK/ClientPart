@@ -159,35 +159,20 @@ const Auth = observer(() => {
         </Dropdown> 
       </ButtonGroup>
     </ButtonToolbar>
-        {/* <Dropdown style={{position: 'absolute', paddingLeft: 375, paddingTop:117}}>
-        <Dropdown.Toggle style={{borderRadius:26, fontWeight:'bold',width: 185, height: 42 }} variant="light" id="dropdown-basic">
-             Пользователи
-        </Dropdown.Toggle>
-        <Dropdown.Menu style={{fontWeight:'bold', borderRadius: 26, width: 185, paddingLeft: 5}}>
-            <Dropdown.Item style={{borderRadius:26, width: 175}} href="#">Toxic</Dropdown.Item>
-            <Dropdown.Item style={{borderRadius:26, width: 175}} href="#">Serotonin</Dropdown.Item>
-        </Dropdown.Menu>
-        </Dropdown>
 
-        <Dropdown style={{paddingLeft: 582, position: 'fixed'}}>
-        <Dropdown.Toggle style={{borderRadius:26, fontWeight:'bold',width: 185, height: 42}} variant="light" id="dropdown-basic">
-             Сортировать
-        </Dropdown.Toggle>
-        <Dropdown.Menu style={{fontWeight:'bold', borderRadius: 26, width: 185, paddingLeft: 5}}>
-            <Dropdown.Item style={{borderRadius:26, width: 175}} href="#">Папки</Dropdown.Item>
-        </Dropdown.Menu>
-        </Dropdown> 
-        
-        <Dropdown>
-        <Dropdown.Toggle style={{borderRadius:26, fontWeight:'bold',width: 185, height: 42}} variant="light" id="dropdown-basic">
-             Создать
-        </Dropdown.Toggle>
-        <Dropdown.Menu style={{fontWeight:'bold', borderRadius: 26, width: 185, paddingLeft: 5}}>
-            <Dropdown.Item style={{borderRadius:26, width: 175}} href="#">Папку</Dropdown.Item>
-            <Dropdown.Item style={{borderRadius:26, width: 175}} href="#">Файл</Dropdown.Item>
-        </Dropdown.Menu>
-        </Dropdown> 
-        */}
+    <table style={{marginTop: 63, marginLeft: 59}} className="min-w-full text-left text-sm font-light">
+              <thead className="border-b font-medium dark:border-neutral-500">
+                <tr>
+                  <th style={{}} scope="col" className="px-6 py-4">Наименование</th>
+                  <th style={{}} scope="col" className="px-6 py-4">Дата и время</th>
+                  <th style={{}} scope="col" className="px-6 py-4">Владелец</th>
+                  <th style={{}} scope="col" className="px-6 py-4">Расположение</th>
+                </tr>
+              </thead>
+            </table>
+            <hr
+        style={{width: 1378, border: '1px solid'}}
+      className="my-12 h-0.5 border-t-0 bg-neutral-100 opacity-100 dark:opacity-50"/>
 
         </Card>
     </Card>
