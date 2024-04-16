@@ -1,6 +1,6 @@
 import React, {useContext, useState}  from "react";
 import {Card, Container, Form, Button, Col} from 'react-bootstrap'
-import { EDITPROFILE_ROUTE, FORGOTPASSWORD_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE } from "../utils/consts";
+import { EDITPROFILE_ROUTE, FORGOTPASSWORD_ROUTE, LOGIN_ROUTE, MYSTORAGE_ROUTE, REGISTRATION_ROUTE } from "../utils/consts";
 import Row from 'react-bootstrap/Row'
 import { useLocation, NavLink, useNavigate } from "react-router-dom";
 import { login, registration } from "../http/userApi";
@@ -18,6 +18,7 @@ const Auth = observer(() => {
     const isLogin = location.pathname === LOGIN_ROUTE
     const [email, setEmail] = useState('')
     const [password,setPassword] = useState('')
+    
     const click = async () =>{
         try{
   
@@ -30,7 +31,7 @@ const Auth = observer(() => {
     }
     user.setUser()
     user.setIsAuth(true)
-    navigate(LOGIN_ROUTE)} 
+    navigate(MYSTORAGE_ROUTE)} 
     catch(e){
         alert(e)
     }

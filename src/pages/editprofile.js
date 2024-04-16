@@ -3,7 +3,7 @@ import {Card, Container, Form, Button, Col } from 'react-bootstrap'
 import { LOGIN_ROUTE, REGISTRATION_ROUTE, EDITPROFILE_ROUTE, MAIN_ROUTE, FORGOTPASSWORD_ROUTE, FORGOTPASSWORD_ROUTE2 } from "../utils/consts";
 import Row from 'react-bootstrap/Row'
 import { useLocation, NavLink, useNavigate } from "react-router-dom";
-import { login, registration } from "../http/userApi";
+import { login, registration, selectAllFiles } from "../http/userApi";
 import {observer} from "mobx-react-lite";
 import {Context} from "../index";
 import Avatar from 'react-avatar';
@@ -87,19 +87,39 @@ const EditProfile = observer(() => {
             alert(e)
         }
     }
+
+    const click1 = async () =>{
+      console.log(email)
+      try
+      {
+          const response = await selectAllFiles()
+          return 0
+      }
+          catch(e)
+          {
+              alert(e)
+          }
+      }
+
     return (
         
         <Container
         className = 'd-flex justify-content-center align-items-center'
         style = {{width: 1402, height: 446, marginTop: 181}}>
-            
+           <Button
+                            size={"lg"}
+                            variant={"outline-dark"}
+                            style={{fontWeight:'bold', borderRadius:37}}
+                            onClick={click1}>  
+                            {isLogin ? '' : 'МОЁ ХРАНИЛИЩЕ'}
+                </Button> 
         <Card style={{width: 1402, borderRadius: 36, height: 712, fontFamily:"Play", display:"inline-block", position:"relative", margin:"auto"}} className="p-5 #FFFAF4">
             <div> <p style={{fontFamily:"Play", color:"#A8A8A8", marginLeft:"58px"}}>Настройки</p>
             
             </div>
             <div class="navbar navbar-default navbar-fixed-top">
                 
-            <ul class="list-group"  style={{borderRadius: 24,marginLeft:"58px", border: "1px solid"}} >
+            <ul class="list-group" style={{borderRadius: 24,marginLeft:"58px", border: "1px solid"}} >
             <li class="list-group-item d-flex justify-content-between align-items-center" ><p style={{fontFamily:"Play"}}>
             Безопасность</p>
             <span class="badge badge-primary badge-pill"></span>
@@ -149,6 +169,8 @@ const EditProfile = observer(() => {
                 onChange = { e => setNickname(e.target.value)}
                 
                 />
+                
+
 
                 <p style={{fontFamily:"Play", color:"#A8A8A8", marginBottom:"9px", marginTop:"38px", marginLeft:"58px"}}>Ваша почта</p>
                 <Form.Control

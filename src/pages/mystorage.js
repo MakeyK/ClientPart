@@ -7,6 +7,7 @@ import { changePassword, check, login, registration } from "../http/userApi";
 import {observer} from "mobx-react-lite";
 // import Image from 'react-bootstrap/Image';
 import {Context} from "../index";
+import ProgressBar from 'react-bootstrap/ProgressBar';
 import Clock from '../Files/Clock.png'
 import Korzina from '../Files/Korzina.png'
 import Star from '../Files/Star.png'
@@ -67,6 +68,7 @@ const Auth = observer(() => {
         style = {{}}>
         <Card style={{ width: 428, height: 856, marginTop: 110, fontFamily:"Play", fontWeight: 'bold', backgroundColor: '#DBDBDB'}}>
                 <p style={{paddingBottom:50, paddingLeft: 50, paddingTop: 48}}>
+                
                 <Button
                             size={"lg"}
                             variant={"outline-dark"}
@@ -75,7 +77,7 @@ const Auth = observer(() => {
                                 <img src={Chelik} style={{width: 67}}/>
                             {isLogin ? '' : 'МОЁ ХРАНИЛИЩЕ'}
                 </Button></p>
-                <p style={{paddingBottom:50, paddingLeft: 50}}>
+                <p style={{paddingBottom:40, paddingLeft: 50}}>
                 <Button
 
                             size={"lg"}
@@ -85,7 +87,7 @@ const Auth = observer(() => {
                                 <img src={Clock} style={{width: 67}}/>
                             {isLogin ? '' : 'НЕДАВНИЕ'}
                 </Button></p>
-                <p style={{paddingBottom:50, paddingLeft: 50}}>
+                <p style={{paddingBottom:40, paddingLeft: 50}}>
                 <Button
                             size={"lg"}
                             variant={"outline-dark-link"}
@@ -94,7 +96,7 @@ const Auth = observer(() => {
                                 <img src={Star} style={{width: 67}}/>
                             {isLogin ? '' : 'ИЗБРАННОЕ'}
                 </Button></p>
-                <p style={{paddingBottom:50, paddingLeft: 50}}>
+                <p style={{paddingBottom:40, paddingLeft: 50}}>
                 <Button
                             size={"lg"}
                             style={{fontWeight:'bold', borderRadius:37}}
@@ -103,6 +105,11 @@ const Auth = observer(() => {
                                 <img src={Korzina} style={{width: 67}}/>
                             {isLogin ? '' : 'КОРЗИНА'}
                 </Button></p>
+
+                <ProgressBar style={{width:349, marginLeft: 33}} variant="dark" now={10} />
+                <p style={{fontFamily:'Rubik Mono One', fontSize: 12, marginLeft: 71, marginTop: 9}}>
+                Использовано 0 мб из 33 гб
+                </p>
                 <p style={{paddingLeft: 50, position:'relative', fontFamily:"Rubik Mono One"}}>
                 <Button
                             size={"xs"}

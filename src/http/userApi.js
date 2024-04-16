@@ -22,3 +22,15 @@ export const changePassword = async (email, old_password, new_password, new_pass
     const {data} = await $authHost.patch('cwh/edit/change_password', {email, old_password, new_password, new_password_check})
     return 0
 }
+
+export const selectAllFiles = async () => {
+    try {
+        const {data} = await $authHost.get(`/cwh/select/all_user_files`, {
+            headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
+        })
+        return 0
+        
+    } catch (e) {
+        alert(e.response.data.message)
+    }
+}
