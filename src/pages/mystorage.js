@@ -1,4 +1,4 @@
-import React, {useContext, useState}  from "react";
+import React, {useContext, useState, useEffect}  from "react";
 import {Card, Container, Form, Button, Col, Nav, ListGroup} from 'react-bootstrap'
 import { LOGIN_ROUTE, REGISTRATION_ROUTE, FORGOTPASSWORD_ROUTE,RECENT_ROUTE, FAVORITE_ROUTE, BASKET_ROUTE, MYSTORAGE_ROUTE } from "../utils/consts";
 // import Row from 'react-bootstrap/Row'
@@ -7,6 +7,8 @@ import { changePassword, check, login, registration } from "../http/userApi";
 import {observer} from "mobx-react-lite";
 // import Image from 'react-bootstrap/Image';
 import {Context} from "../index";
+import FileList from "../components/FileList";
+import { selectAllFiles } from "../http/userApi";
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Clock from '../Files/Clock.png'
 import Korzina from '../Files/Korzina.png'
@@ -25,6 +27,7 @@ const Auth = observer(() => {
     document.body.style.backgroundPositionY = "450px"
     document.body.style.backgroundColor="#D0D0D0"
     const {user} = useContext(Context)
+    const {UserRequest} = useContext(Context) 
     const navigate =useNavigate()
     const location = useLocation()
     const isLogin = location.pathname === LOGIN_ROUTE
@@ -32,6 +35,13 @@ const Auth = observer(() => {
     const [old_password, setOldPassword] = useState('')
     const [new_password,setNewPassword] = useState('')
     const [new_password_check,setNewPasswordCheck] = useState('')
+
+    
+    useEffect(() => {    
+        selectAllFiles().then(data => {UserRequest.setUserRequest(data) 
+          console.log("qweqweqw")
+          console.log(data)}) 
+    }, [])
 
     const recent = async() => {
         let recent = `recent`
@@ -96,7 +106,7 @@ const Auth = observer(() => {
                                 <img src={Star} style={{width: 67}}/>
                             {isLogin ? '' : 'ИЗБРАННОЕ'}
                 </Button></p>
-                <p style={{paddingBottom:40, paddingLeft: 50}}>
+                <p style={{paddingBottom:30, paddingLeft: 50}}>
                 <Button
                             size={"lg"}
                             style={{fontWeight:'bold', borderRadius:37}}
@@ -106,9 +116,9 @@ const Auth = observer(() => {
                             {isLogin ? '' : 'КОРЗИНА'}
                 </Button></p>
 
-                <ProgressBar style={{width:349, marginLeft: 33}} variant="dark" now={10} />
+                <ProgressBar style={{width:332, marginLeft: 50, border: '1px solid'}} variant="dark" now={20} />
                 <p style={{fontFamily:'Rubik Mono One', fontSize: 12, marginLeft: 71, marginTop: 9}}>
-                Использовано 0 мб из 33 гб
+                Использовано 0 мб из 30 гб
                 </p>
                 <p style={{paddingLeft: 50, position:'relative', fontFamily:"Rubik Mono One"}}>
                 <Button
@@ -178,9 +188,10 @@ const Auth = observer(() => {
               </thead>
             </table>
             <hr
-        style={{width: 1378, border: '1px solid'}}
+        style={{width: 1378, border: '1px solid', position: 'absolute', marginTop: 235}}
       className="my-12 h-0.5 border-t-0 bg-neutral-100 opacity-100 dark:opacity-50"/>
 
+      <FileList/>
         </Card>
     </Card>
         </div>

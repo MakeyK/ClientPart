@@ -25,10 +25,12 @@ export const changePassword = async (email, old_password, new_password, new_pass
 
 export const selectAllFiles = async () => {
     try {
-        const {data} = await $authHost.get(`/cwh/select/all_user_files`, {
+        const {data} = await $authHost.get(`cwh/select/all_user_files`, {
             headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
         })
-        return 0
+        // console.log("baf")
+        console.log(data)
+        return data
         
     } catch (e) {
         alert(e.response.data.message)

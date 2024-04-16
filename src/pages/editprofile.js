@@ -63,6 +63,19 @@ const EditProfile = observer(() => {
         </div>
       );
 
+      const click1 = async () =>{
+        console.log(email)
+        try
+        {
+            const response = await selectAllFiles()
+            return 0
+        }
+            catch(e)
+            {
+                alert(e)
+            }
+        }
+
     const click = async () =>{
     console.log(email)
     try
@@ -88,34 +101,22 @@ const EditProfile = observer(() => {
         }
     }
 
-    const click1 = async () =>{
-      console.log(email)
-      try
-      {
-          const response = await selectAllFiles()
-          return 0
-      }
-          catch(e)
-          {
-              alert(e)
-          }
-      }
+    
 
     return (
         
         <Container
         className = 'd-flex justify-content-center align-items-center'
         style = {{width: 1402, height: 446, marginTop: 181}}>
-           <Button
+        <Card style={{width: 1402, borderRadius: 36, height: 712, fontFamily:"Play", display:"inline-block", position:"relative", margin:"auto"}} className="p-5 #FFFAF4">
+            <div> <p style={{fontFamily:"Play", color:"#A8A8A8", marginLeft:"58px"}}>Настройки</p>
+            <Button
                             size={"lg"}
                             variant={"outline-dark"}
                             style={{fontWeight:'bold', borderRadius:37}}
                             onClick={click1}>  
                             {isLogin ? '' : 'МОЁ ХРАНИЛИЩЕ'}
-                </Button> 
-        <Card style={{width: 1402, borderRadius: 36, height: 712, fontFamily:"Play", display:"inline-block", position:"relative", margin:"auto"}} className="p-5 #FFFAF4">
-            <div> <p style={{fontFamily:"Play", color:"#A8A8A8", marginLeft:"58px"}}>Настройки</p>
-            
+                </Button>
             </div>
             <div class="navbar navbar-default navbar-fixed-top">
                 
