@@ -27,6 +27,7 @@ const EditProfile = observer(() => {
     const [password,setPassword] = useState('')
     const [password_check,setPasswordCheck] = useState('')
 
+    
     const forgotpassword = async() => {
         let forgotpassword = `forgotpassword`
         navigate(FORGOTPASSWORD_ROUTE2)
@@ -39,31 +40,9 @@ const EditProfile = observer(() => {
     const closeModal = () => {
       setModalIsOpen(false);
     };
-
-    const modalContent = (
-        <div style={{textAlign:'center', marginTop: 427}} className="disk_upload">
-          <p style={{fontFamily:"Play", display:'inline-block'}}>
-          <Button type='file-input' 
-          className="disk__upload-label"
-          id="disk__upload-input"
-            // <label htmlFor="disk__upload input" className="disk__upload-label"> Загрузить файл</label>
-            // <input type='file' id="disk__upload-input" className="disk__upload-input"/>
-          name="file_avatar"
-          style={{borderRadius: 41, height:70, width:384}}
-          variant={"outline-dark"}
-          size="lg">
-             Открыть изображние
-             </Button>
-          <Button 
-          style={{borderRadius: 41, height:70, width:384}}
-          variant={"outline-dark"}
-          size="lg"
-          onClick={closeModal}
-          > Применить изменения</Button></p>
-        </div>
-      );
-
-      const click1 = async () =>{
+  
+    
+    const click1 = async () =>{
         console.log(email)
         try
         {
@@ -101,10 +80,43 @@ const EditProfile = observer(() => {
         }
     }
 
-    
+    const fileRef = React.useRef();
+    let [file, setFile] = React.useState();
+    const handleChange = (event) => {
+        setFile(event.target.files[0])};
 
+        const modalContent = (
+            <div style={{textAlign:'center', marginTop: 427}} className="disk_upload">
+              <p style={{fontFamily:"Play", display:'inline-block'}}>
+              <Button type='file-input'
+              ref={fileRef} 
+              onChange={handleChange} 
+              className="upload"
+              id="upload"
+              onClick={() => fileRef.current.click()}
+              name="file_avatar"
+              style={{borderRadius: 41, height:70, width:384}}
+              variant={"outline-dark"}
+              size="lg">
+                 { file &&  file!==undefined && file!==null &&
+                <div>
+                <p>{file.name}</p>
+                <p>{file.size}</p>
+                <p>{file.type}</p>
+                </div>
+                }  
+                Открыть изображение
+                </Button>
+              <Button 
+              style={{borderRadius: 41, height:70, width:384}}
+              variant={"outline-dark"}
+              size="lg"
+              onClick={closeModal}
+              > Применить изменения</Button>
+              </p>
+            </div>
+          );
     return (
-        
         <Container
         className = 'd-flex justify-content-center align-items-center'
         style = {{width: 1402, height: 446, marginTop: 181}}>
@@ -149,6 +161,7 @@ const EditProfile = observer(() => {
                 <Modal isOpen={modalIsOpen} onRequestClose={closeModal} >
                 {modalContent}
                 </Modal>
+                
                 </p>
 
                 <p style={{position: "absolute", paddingLeft: 816, paddingBottom: 315}}>
@@ -170,8 +183,6 @@ const EditProfile = observer(() => {
                 onChange = { e => setNickname(e.target.value)}
                 
                 />
-                
-
 
                 <p style={{fontFamily:"Play", color:"#A8A8A8", marginBottom:"9px", marginTop:"38px", marginLeft:"58px"}}>Ваша почта</p>
                 <Form.Control
@@ -186,7 +197,7 @@ const EditProfile = observer(() => {
 
                 <div style={{marginBottom:100}}> <p style={{fontFamily:"Play", color:"#A8A8A8", marginBottom:"9px", marginTop:"79px", marginLeft:"58px"}}>Ваши друзья</p>
                 <ul class="list-group"  style={{borderRadius: 24,marginLeft:"58px", border: "1px solid", height: 231, width: 503}} >
-                
+
                 </ul>
                 </div>
              {/*   <Button

@@ -20,8 +20,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 
 
-
-const Auth = observer(() => {
+const MyStorage = observer(() => {
     document.body.style.backgroundImage ="url(/cloud.png)";
     document.body.style.backgroundRepeat = "no-repeat";
     document.body.style.backgroundPositionY = "450px"
@@ -35,11 +34,14 @@ const Auth = observer(() => {
     const [old_password, setOldPassword] = useState('')
     const [new_password,setNewPassword] = useState('')
     const [new_password_check,setNewPasswordCheck] = useState('')
+    const [completed, setCompleted] = useState(0);
 
-    
+    useEffect(() => {
+      setInterval(() => setCompleted(Math.floor(Math.random() * 100) + 1), 2000);
+    }, []);
+
     useEffect(() => {    
         selectAllFiles().then(data => {UserRequest.setUserRequest(data) 
-          console.log("qweqweqw")
           console.log(data)}) 
     }, [])
 
@@ -116,10 +118,11 @@ const Auth = observer(() => {
                             {isLogin ? '' : 'КОРЗИНА'}
                 </Button></p>
 
-                <ProgressBar style={{width:332, marginLeft: 50, border: '1px solid'}} variant="dark" now={20} />
+                <ProgressBar style={{width:332, marginLeft: 50, border: '1px solid'}} variant="dark" now={completed}/>
                 <p style={{fontFamily:'Rubik Mono One', fontSize: 12, marginLeft: 71, marginTop: 9}}>
-                Использовано 0 мб из 30 гб
+                Использовано {completed} мб из 30 гб
                 </p>
+
                 <p style={{paddingLeft: 50, position:'relative', fontFamily:"Rubik Mono One"}}>
                 <Button
                             size={"xs"}
@@ -176,7 +179,7 @@ const Auth = observer(() => {
         </Dropdown> 
       </ButtonGroup>
     </ButtonToolbar>
-
+    
     <table style={{marginTop: 63, marginLeft: 59}} className="min-w-full text-left text-sm font-light">
               <thead className="border-b font-medium dark:border-neutral-500">
                 <tr>
@@ -190,7 +193,7 @@ const Auth = observer(() => {
             <hr
         style={{width: 1378, border: '1px solid', position: 'absolute', marginTop: 235}}
       className="my-12 h-0.5 border-t-0 bg-neutral-100 opacity-100 dark:opacity-50"/>
-
+  
       <FileList/>
         </Card>
     </Card>
@@ -198,4 +201,4 @@ const Auth = observer(() => {
     );
 });
 
-export default Auth;
+export default MyStorage;

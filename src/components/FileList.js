@@ -7,15 +7,14 @@ import FileItem from "./FileItem";
 
 const FileList = observer(() => {
     const {UserRequest} = useContext(Context)
+    // const x = UserRequest.data.map(data => 
+    // <FileItem key={data.id_file} request={data}/>) 
     console.log(UserRequest) 
     return ( 
-     //   <Row className="d-flex"> 
-      //      {UserRequest.data.map(data => 
-       //         <FileItem key={data.id_file} request={data}/> 
-       //     )} 
-       // </Row>
-       <Row></Row> 
+        <Row> 
+            {/* {x} */}
+        </Row>
     ); 
-}); 
+});     
  
 export default FileList;

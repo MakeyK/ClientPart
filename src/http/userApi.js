@@ -29,7 +29,6 @@ export const selectAllFiles = async () => {
             headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
         })
         // console.log("baf")
-        console.log(data)
         return data
         
     } catch (e) {
