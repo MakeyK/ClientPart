@@ -42,7 +42,7 @@ const MyStorage = observer(() => {
 
     useEffect(() => {    
         selectAllFiles().then(data => {UserRequest.setUserRequest(data) 
-          console.log(data)}) 
+          console.log(`Selected ${data}`)})
     }, [])
 
     const recent = async() => {

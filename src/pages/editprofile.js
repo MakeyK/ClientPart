@@ -47,7 +47,7 @@ const EditProfile = observer(() => {
         try
         {
             const response = await selectAllFiles()
-            return 0
+            return response
         }
             catch(e)
             {
