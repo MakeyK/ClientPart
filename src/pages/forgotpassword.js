@@ -7,11 +7,11 @@ import { changePassword, check, login, registration } from "../http/userApi";
 import {observer} from "mobx-react-lite";
 import {Context} from "../index";
 
-const Auth = observer(() => {
+const ForgotPassword = observer(() => {
     document.body.style.backgroundImage ="url(/cloud.png)";
     document.body.style.backgroundRepeat = "no-repeat";
     document.body.style.backgroundPositionY = "450px"
-    document.body.style.backgroundColor="#ebebeb"
+    document.body.style.backgroundColor="#D0D0D0"
     const {user} = useContext(Context)
     const navigate =useNavigate()
     const location = useLocation()
@@ -98,4 +98,4 @@ const Auth = observer(() => {
     );
 });
 
-export default Auth;
+export default ForgotPassword;

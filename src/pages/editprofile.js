@@ -11,10 +11,10 @@ import Modal from 'react-modal';
 
 
 const EditProfile = observer(() => {
-    document.body.style.backgroundImage = "url(/cloud.png)";
+    document.body.style.backgroundImage ="url(/cloud.png)";
     document.body.style.backgroundRepeat = "no-repeat";
     document.body.style.backgroundPositionY = "450px"
-    document.body.style.backgroundColor="#ebebeb"
+    document.body.style.backgroundColor="#D0D0D0"
     const {user} = useContext(Context)
     const navigate = useNavigate()
     const location = useLocation()

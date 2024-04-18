@@ -6,6 +6,7 @@ import NavBar2 from "./components/NavBar2"
 function App() { 
   return ( 
     <BrowserRouter> 
+      {/* <NavBar2/> */}
       <NavBar/>
       <AppRouter/> 
       

@@ -118,7 +118,7 @@ const MyStorage = observer(() => {
                             {isLogin ? '' : 'КОРЗИНА'}
                 </Button></p>
 
-                <ProgressBar style={{width:332, marginLeft: 50, border: '1px solid'}} variant="dark" now={completed}/>
+                <ProgressBar style={{width:332, marginLeft: 50, border: '2px solid'}} variant="dark" now={completed}/>
                 <p style={{fontFamily:'Rubik Mono One', fontSize: 12, marginLeft: 71, marginTop: 9}}>
                 Использовано {completed} мб из 30 гб
                 </p>
@@ -195,6 +195,7 @@ const MyStorage = observer(() => {
       className="my-12 h-0.5 border-t-0 bg-neutral-100 opacity-100 dark:opacity-50"/>
   
       <FileList/>
+      
         </Card>
     </Card>
         </div>

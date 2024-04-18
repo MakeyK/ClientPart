@@ -1,4 +1,4 @@
-import React, {useContext, useState}  from "react";
+import React, {useContext, useState, useEffect}  from "react";
 import {Card, Container, Form, Button, Col, Nav, ListGroup} from 'react-bootstrap'
 import { LOGIN_ROUTE, REGISTRATION_ROUTE, FORGOTPASSWORD_ROUTE, MYSTORAGE_ROUTE, RECENT_ROUTE, BASKET_ROUTE, FAVORITE_ROUTE } from "../utils/consts";
 // import Row from 'react-bootstrap/Row'
@@ -11,8 +11,12 @@ import Clock from '../Files/Clock.png'
 import Korzina from '../Files/Korzina.png'
 import Star from '../Files/Star.png'
 import Chelik from '../Files/Chelik.png'
+import FileList from "../components/FileList";
+import { selectAllFiles } from "../http/userApi";
+import ProgressBar from 'react-bootstrap/ProgressBar';
 
-const Auth = observer(() => {
+
+const Basket = observer(() => {
     document.body.style.backgroundImage ="url(/cloud.png)";
     document.body.style.backgroundRepeat = "no-repeat";
     document.body.style.backgroundPositionY = "450px"
@@ -25,7 +29,11 @@ const Auth = observer(() => {
     const [old_password, setOldPassword] = useState('')
     const [new_password,setNewPassword] = useState('')
     const [new_password_check,setNewPasswordCheck] = useState('')
+    const [completed, setCompleted] = useState(0);
 
+    useEffect(() => {
+      setInterval(() => setCompleted(Math.floor(Math.random() * 100) + 1), 2000);
+    }, []);
     const recent = async() => {
         let recent = `recent`
         navigate(RECENT_ROUTE)
@@ -68,7 +76,7 @@ const Auth = observer(() => {
                                 <img src={Chelik} style={{width: 67}}/>
                             {isLogin ? '' : 'МОЁ ХРАНИЛИЩЕ'}
                 </Button></p>
-                <p style={{paddingBottom:50, paddingLeft: 50}}>
+                <p style={{paddingBottom:40, paddingLeft: 50}}>
                 <Button
 
                             size={"lg"}
@@ -78,7 +86,7 @@ const Auth = observer(() => {
                                 <img src={Clock} style={{width: 67}}/>
                             {isLogin ? '' : 'НЕДАВНИЕ'}
                 </Button></p>
-                <p style={{paddingBottom:50, paddingLeft: 50}}>
+                <p style={{paddingBottom:40, paddingLeft: 50}}>
                 <Button
                             size={"lg"}
                             variant={"outline-dark-link"}
@@ -87,7 +95,7 @@ const Auth = observer(() => {
                                 <img src={Star} style={{width: 67}}/>
                             {isLogin ? '' : 'ИЗБРАННОЕ'}
                 </Button></p>
-                <p style={{paddingBottom:50, paddingLeft: 50}}>
+                <p style={{paddingBottom:30, paddingLeft: 50}}>
                 <Button
                             size={"lg"}
                             style={{fontWeight:'bold', borderRadius:37}}
@@ -96,6 +104,10 @@ const Auth = observer(() => {
                                 <img src={Korzina} style={{width: 67}}/>
                             {isLogin ? '' : 'КОРЗИНА'}
                 </Button></p>
+                <ProgressBar style={{width:332, marginLeft: 50, border: '2px solid'}} variant="dark" now={completed}/>
+                <p style={{fontFamily:'Rubik Mono One', fontSize: 12, marginLeft: 71, marginTop: 9}}>
+                Использовано {completed} мб из 30 гб
+                </p>
                 <p style={{paddingLeft: 50, position:'relative',fontFamily:"Rubik Mono One"}}>
                 <Button
                             size={"xs"}
@@ -107,9 +119,10 @@ const Auth = observer(() => {
         <Card style={{width: 1380, borderRadius: 36, height: 760, fontFamily:"Play", marginTop: 50, marginLeft: 457, position:'absolute', backgroundColor: '#DBDBDB'}}>
                 
         </Card>
+        
     </Card>
         </div>
     );
 });
 
-export default Auth;
+export default Basket;
