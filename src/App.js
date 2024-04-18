@@ -8,8 +8,8 @@ function App() {
   return ( 
     <BrowserRouter> 
       {/* <NavBar2/> */}
-    <LowerNavBar/>
-      <NavBar/>
+      {/* <LowerNavBar/> */}
+      {/* <NavBar/> */}
       <AppRouter/> 
       
     </BrowserRouter> 

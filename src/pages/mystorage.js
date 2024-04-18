@@ -18,6 +18,7 @@ import Table from 'react-bootstrap/Table';
 import Dropdown from 'react-bootstrap/Dropdown';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
+import NavBar from "../components/NavBar";
 
 
 const MyStorage = observer(() => {
@@ -194,7 +195,7 @@ const MyStorage = observer(() => {
       className="my-12 h-0.5 border-t-0 bg-neutral-100 opacity-100 dark:opacity-50"/>
   
       <FileList/>
-      
+      <NavBar/>
         </Card>
     </Card>
         </div>

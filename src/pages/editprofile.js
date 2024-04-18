@@ -8,6 +8,9 @@ import {observer} from "mobx-react-lite";
 import {Context} from "../index";
 import Avatar from 'react-avatar';
 import Modal from 'react-modal';
+import NavBar from "../components/NavBar";
+import Smilecloud from '../Files/Smilecloud.png'
+import Telegramm from '../Files/telegramm.png'
 
 
 const EditProfile = observer(() => {
@@ -122,31 +125,26 @@ const EditProfile = observer(() => {
         style = {{width: 1402, height: 446, marginTop: 181}}>
         <Card style={{width: 1402, borderRadius: 36, height: 712, fontFamily:"Play", display:"inline-block", position:"relative", margin:"auto"}} className="p-5 #FFFAF4">
             <div> <p style={{fontFamily:"Play", color:"#A8A8A8", marginLeft:"58px"}}>Настройки</p>
-            <Button
-                            size={"lg"}
-                            variant={"outline-dark"}
-                            style={{fontWeight:'bold', borderRadius:37}}
-                            onClick={click1}>  
-                            {isLogin ? '' : 'МОЁ ХРАНИЛИЩЕ'}
-                </Button>
+            
             </div>
             <div class="navbar navbar-default navbar-fixed-top">
                 
             <ul class="list-group" style={{borderRadius: 24,marginLeft:"58px", border: "1px solid"}} >
             <li class="list-group-item d-flex justify-content-between align-items-center" ><p style={{fontFamily:"Play"}}>
-            Безопасность</p>
+                <NavLink style={{color:'black', marginLeft: 75}}> Безопасность </NavLink>
+            </p>
             <span class="badge badge-primary badge-pill"></span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center"><p style={{fontFamily:"Play"}}>
-            Конфиденциальность информации</p>
+                <NavLink style={{color:'black'}}> Конфиденциальность информации </NavLink></p>
             <span class="badge badge-primary badge-pill"></span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center"><p style={{fontFamily:"Play"}}>
-            Чёрный список</p>
+                <NavLink style={{color: 'black', marginLeft: 75}}> Чёрный список </NavLink></p>
             <span class="badge badge-primary badge-pill"></span>
             </li>
             </ul><p>
-            <Avatar size={"197px"} round src="https://cybersport.metaratings.ru/storage/images/ae/34/ae3485265fec14436535f65ba0b5c08a.jpg"/></p>
+            <Avatar size={"197px"} round src={Telegramm}/></p>
             <p style={{paddingBottom: 100}}>
             <Button
                 name="file_avatar"
@@ -197,7 +195,8 @@ const EditProfile = observer(() => {
 
                 <div style={{marginBottom:100}}> <p style={{fontFamily:"Play", color:"#A8A8A8", marginBottom:"9px", marginTop:"79px", marginLeft:"58px"}}>Ваши друзья</p>
                 <ul class="list-group"  style={{borderRadius: 24,marginLeft:"58px", border: "1px solid", height: 231, width: 503}} >
-
+                <img src={Smilecloud} style={{width: 58, marginTop: 70, marginLeft: 227}}/>
+                <p style={{color: 'black', fontWeight: 'bold', marginLeft: 110}}> На данный момент у вас нету друзей </p>
                 </ul>
                 </div>
              {/*   <Button
@@ -210,7 +209,7 @@ const EditProfile = observer(() => {
     */}
             </div>
         </Card>
-        
+        <NavBar/>
         </Container>
     );
 });

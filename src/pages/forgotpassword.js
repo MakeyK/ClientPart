@@ -6,6 +6,7 @@ import { useLocation, NavLink, useNavigate } from "react-router-dom";
 import { changePassword, check, login, registration } from "../http/userApi";
 import {observer} from "mobx-react-lite";
 import {Context} from "../index";
+import NavBar from "../components/NavBar";
 
 const ForgotPassword = observer(() => {
     document.body.style.backgroundImage ="url(/cloud.png)";
@@ -38,7 +39,7 @@ const ForgotPassword = observer(() => {
         className = 'd-flex justify-content-center align-items-center '
         style = {{width: 925, height: 646, marginTop: 178}}>
         <Card style={{width: 925, borderRadius: 80, height: 646, fontFamily:"Play"}} className="p-5 #FFFAF4">
-                <p style={{fontSize:"36px", height: 43, display:"inline-block", position:"relative", margin:"auto"}}>{isLogin ? '' : 'Изменить пароль'}</p>
+                <p style={{fontSize:"36px", height: 43, display:"inline-block", position:"relative", textAlign:'center'}}>{isLogin ? '' : 'Изменить пароль'}</p>
             <Form className="d-flex flex-column" style={{position:'relative'}}>
             <Form.Control
                 style={{borderRadius: 70, height: 71, border: "1px solid"}}
@@ -94,6 +95,7 @@ const ForgotPassword = observer(() => {
                 </Row> 
             </Form>
         </Card>
+        <NavBar/>
         </Container>
     );
 });

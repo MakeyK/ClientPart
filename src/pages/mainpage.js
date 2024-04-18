@@ -4,6 +4,9 @@ import { Container } from "react-bootstrap";
 // import Image from 'react-bootstrap/Image';
 import Smilecloud from '../Files/Smilecloud.png'
 import Main from '../Files/main.jpeg'
+import LowerNavBar from "../components/LowerNavBar";
+import NavBar2 from '../components/NavBar2'
+
 
 const MainP = () =>
 {
@@ -35,28 +38,29 @@ const MainP = () =>
             className="my-12 h-0.5 border-t-0 bg-neutral-100 opacity-30 dark:opacity-50"/>
             
             <p style={{fontFamily: 'Play', width: 447, fontSize: 13, letterSpacing: 2, color: '#000000A6'}}>
-            <img src={Smilecloud} style={{width: 82, marginTop: 19, marginLeft: 38, display: 'inline'}}/>
+            <img src={Smilecloud} style={{width: 82, marginLeft: 38, display: 'inline'}}/>
             Разработчик дизайн макет сайта 
             </p>
-            <p style={{position:'absolute', color: 'black', paddingTop: 143, fontFamily: 'Play', 
-            paddingLeft:133, fontSize: '35px', letterSpacing: 2}}>Сердечный М.С.</p>
+            <p style={{position:'absolute', color: 'black', paddingTop: 130, fontFamily: 'Play', 
+            paddingLeft:125, fontSize: '35px', letterSpacing: 2}}>Сердечный М.С.</p>
 
             <p style={{fontFamily: 'Play', width: 447, fontSize: 13, letterSpacing: 2, color: '#000000A6'}}>
             <img src={Smilecloud} style={{width: 82, marginTop: 19, marginLeft: 38}}/>
             Разработчик клиентской части сайта
             </p>
-            <p style={{position:'absolute', color: 'black', paddingTop: 260, fontFamily: 'Play', 
-            paddingLeft:133, fontSize: '35px', letterSpacing: 2}}>Макеева Е.В.</p>
+            <p style={{position:'absolute', color: 'black', paddingTop: 240, fontFamily: 'Play', 
+            paddingLeft:125, fontSize: '35px', letterSpacing: 2}}>Макеева Е.В.</p>
 
             <p style={{fontFamily: 'Play', width: 447, fontSize: 13, letterSpacing: 2, color: '#000000A6'}}>
             <img src={Smilecloud} style={{width: 82, marginTop: 19, marginLeft: 38}}/>
             Разработчик серверной части сайта
             </p>
-            <p style={{position:'absolute', color: 'black', paddingTop: 373, fontFamily: 'Play', 
-            paddingLeft:133, fontSize: '35px', letterSpacing: 2}}>Мухторов Р.С.</p> 
+            <p style={{position:'absolute', color: 'black', paddingTop: 357, fontFamily: 'Play', 
+            paddingLeft:125, fontSize: '35px', letterSpacing: 2}}>Мухторов Р.С.</p> 
             </Card>
             
-
+            <NavBar2/>
+            <LowerNavBar/>
             </Container>
     );
 };

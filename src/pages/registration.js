@@ -6,6 +6,7 @@ import { useLocation, NavLink, useNavigate } from "react-router-dom";
 import { login, registration } from "../http/userApi";
 import {observer} from "mobx-react-lite";
 import {Context} from "../index";
+import NavBar from "../components/NavBar";
 
 const Registration = observer(() => {
     document.body.style.backgroundImage ="url(/cloud.png)";
@@ -94,6 +95,7 @@ const Registration = observer(() => {
                  
             </Form>
         </Card>
+        <NavBar/>
         </Container>
     );
 });

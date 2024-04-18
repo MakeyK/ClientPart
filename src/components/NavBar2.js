@@ -44,7 +44,7 @@ const NavBar2 = observer(() => {
                             // onClick={(mainn) => {user.setIsAuth(true)}}
                             > 
                             <div> <p class="text-white"
-                            style={{width:355, letterSpacing:5, marginTop: 10}}> Авторизация </p></div>
+                            style={{width:355, letterSpacing: 9, marginTop: 10}}> Авторизация </p></div>
                         </Button>
                     </Nav>
                     :
