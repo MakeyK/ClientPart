@@ -144,8 +144,7 @@ const MyStorage = observer(() => {
         </Table>
         <hr
         style={{width: 41, position: 'absolute', marginTop: 22, marginLeft: 333, transform:' rotateZ(90deg)'}}
-      className="my-12 h-0.5 border-t-0 bg-neutral-100 opacity-100 dark:opacity-50"
-    />
+      className="my-12 h-0.5 border-t-0 bg-neutral-100 opacity-100 dark:opacity-50"/>
       <ButtonGroup className="me-2" aria-label="First group">
       <Dropdown style={{paddingLeft: 44}}>
       <Dropdown.Toggle style={{borderRadius:26, fontWeight:'bold',width: 185, height: 42 }} variant="light" id="dropdown-basic">
