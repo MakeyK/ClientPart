@@ -19,6 +19,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import NavBar3 from "../components/NavBar3";
+import Upload from 'rc-upload'
 
 
 const MyStorage = observer(() => {
@@ -36,6 +37,43 @@ const MyStorage = observer(() => {
     const [new_password,setNewPassword] = useState('')
     const [new_password_check,setNewPasswordCheck] = useState('')
     const [completed, setCompleted] = useState(0);
+    const [imgData, setImgdata] = useState();
+    const [fileName, setFileName] = useState();
+    const [fileSize, setFileSize] = useState();
+    const [percentage, setPercentage] = useState(0);
+    const [isUploading, setIsUploading] = useState(false);
+
+    const props = {
+      action: `${process.env.REACT_APP_API_URL}cwh/upload/file`,
+      headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
+      beforeUpload(file_storage) {
+        // Start upload
+        setIsUploading(true);
+        // Set file details
+        setFileName(file_storage.name);
+        setFileSize(Math.floor(file_storage.size / 1000));
+        // Display image for .png format
+        if (file_storage.type === "image/png") {
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            setImgdata(reader.result);
+          };
+          reader.readAsDataURL(file_storage);
+        }
+        console.log(file_storage.name)
+      },
+      onSuccess() {
+        // Finish upload
+        setIsUploading(false);
+      },
+      onProgress(step) {
+        // Update progress
+        setPercentage(Math.round(step.percent));
+      },
+      onError(err) {
+        console.log("onError", err);
+      }
+    };
 
     
     useEffect(() => {    
@@ -173,16 +211,18 @@ const MyStorage = observer(() => {
       <ButtonGroup aria-label="Third group">
       <Dropdown style={{paddingLeft: 312}}>
         <Dropdown.Toggle style={{borderRadius:26, fontWeight:'bold',width: 185, height: 42}} variant="light" id="dropdown-basic">
-             Создать
+            Создать 
         </Dropdown.Toggle>
         <Dropdown.Menu style={{fontWeight:'bold', borderRadius: 26, width: 185, paddingLeft: 5}}>
-            <Dropdown.Item style={{borderRadius:26, width: 175}} href="#">Папку</Dropdown.Item>
-            <Dropdown.Item style={{borderRadius:26, width: 175}} href="#">Файл</Dropdown.Item>
+          <Dropdown.Item style={{borderRadius:26, width: 175}} href="#">Папку</Dropdown.Item>
+          <Upload {...props}> <Dropdown.Item id="upload-button" style={{borderRadius:26, width: 175}} href="#"> Файл</Dropdown.Item></Upload>
         </Dropdown.Menu>
         </Dropdown> 
       </ButtonGroup>
     </ButtonToolbar>
     
+
+
     <table style={{marginTop: 63, marginLeft: 59}} className="min-w-full text-left text-sm font-light">
               <thead className="border-b font-medium dark:border-neutral-500">
                 <tr>
@@ -198,8 +238,7 @@ const MyStorage = observer(() => {
       className="my-12 h-0.5 border-t-0 bg-neutral-100 opacity-100 dark:opacity-50"/>
   
       <FileList users={UserRequest.getUser()}/>
-      <NavBar3/>
-      
+      <NavBar3/> 
         </Card>
     </Card>
         </div>
