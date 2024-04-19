@@ -18,7 +18,7 @@ import Table from 'react-bootstrap/Table';
 import Dropdown from 'react-bootstrap/Dropdown';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
-import NavBar from "../components/NavBar";
+import NavBar3 from "../components/NavBar3";
 
 
 const MyStorage = observer(() => {
@@ -37,14 +37,14 @@ const MyStorage = observer(() => {
     const [new_password_check,setNewPasswordCheck] = useState('')
     const [completed, setCompleted] = useState(0);
 
-    useEffect(() => {
-      setInterval(() => setCompleted(Math.floor(Math.random() * 100) + 1), 2000);
-    }, []);
-
+    
     useEffect(() => {    
-        selectAllFiles().then(data => {UserRequest.setUserRequest(data) 
-          console.log(`Selected ${data}`)})
-    }, [])
+      selectAllFiles().then(data => {UserRequest.setUserRequest(data) 
+        console.log(`Selected ${data}`)})
+      }, [])
+      // useEffect(() => {
+      //   setInterval(() => setCompleted(Math.floor(Math.random() * 100) + 1), 2000);
+      // }, []);
 
     const recent = async() => {
         let recent = `recent`
@@ -162,8 +162,11 @@ const MyStorage = observer(() => {
         <Dropdown.Toggle style={{borderRadius:26, fontWeight:'bold',width: 185, height: 42}} variant="light" id="dropdown-basic">
              Сортировать
         </Dropdown.Toggle>
-        <Dropdown.Menu style={{fontWeight:'bold', borderRadius: 26, width: 185, paddingLeft: 5}}>
-            <Dropdown.Item style={{borderRadius:26, width: 175}} href="#">По дате создания</Dropdown.Item>
+        <Dropdown.Menu style={{fontWeight:'bold', borderRadius: 26, width: 287, paddingLeft: 5}}>
+            <Dropdown.Item style={{borderRadius:26, width: 258}} href="#">Сначала большие файлы/папки</Dropdown.Item>
+            <Dropdown.Item style={{borderRadius:26, width: 273}} href="#">Сначала маленькие файлы/папки</Dropdown.Item>
+            <Dropdown.Item style={{borderRadius:26, width: 133}} href="#">Сначала новые</Dropdown.Item>
+            <Dropdown.Item style={{borderRadius:26, width: 138}} href="#">Сначала старые</Dropdown.Item>
         </Dropdown.Menu>
         </Dropdown>
       </ButtonGroup>
@@ -194,8 +197,9 @@ const MyStorage = observer(() => {
         style={{width: 1378, border: '1px solid', position: 'absolute', marginTop: 235}}
       className="my-12 h-0.5 border-t-0 bg-neutral-100 opacity-100 dark:opacity-50"/>
   
-      <FileList/>
-      <NavBar/>
+      <FileList users={UserRequest.getUser()}/>
+      <NavBar3/>
+      
         </Card>
     </Card>
         </div>

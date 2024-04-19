@@ -2,7 +2,7 @@ import { makeAutoObservable } from "mobx";
  
 export default class UserRequest { 
 constructor(){ 
-    this.userRequest= {} 
+    this.userRequest= []
     makeAutoObservable(this) 
 } 
 setUserRequest(userRequest) 

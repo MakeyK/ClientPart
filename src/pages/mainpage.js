@@ -38,7 +38,7 @@ const MainP = () =>
             className="my-12 h-0.5 border-t-0 bg-neutral-100 opacity-30 dark:opacity-50"/>
             
             <p style={{fontFamily: 'Play', width: 447, fontSize: 13, letterSpacing: 2, color: '#000000A6'}}>
-            <img src={Smilecloud} style={{width: 82, marginLeft: 38, display: 'inline'}}/>
+            <img src={Smilecloud} style={{width: 82, marginLeft: 38}}/>
             Разработчик дизайн макет сайта 
             </p>
             <p style={{position:'absolute', color: 'black', paddingTop: 130, fontFamily: 'Play', 

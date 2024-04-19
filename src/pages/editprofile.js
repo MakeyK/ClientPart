@@ -11,7 +11,7 @@ import Modal from 'react-modal';
 import NavBar from "../components/NavBar";
 import Smilecloud from '../Files/Smilecloud.png'
 import Telegramm from '../Files/telegramm.png'
-
+import SadCloud from '../Files/Sadcloud.png'
 
 const EditProfile = observer(() => {
     document.body.style.backgroundImage ="url(/cloud.png)";
@@ -195,7 +195,7 @@ const EditProfile = observer(() => {
 
                 <div style={{marginBottom:100}}> <p style={{fontFamily:"Play", color:"#A8A8A8", marginBottom:"9px", marginTop:"79px", marginLeft:"58px"}}>Ваши друзья</p>
                 <ul class="list-group"  style={{borderRadius: 24,marginLeft:"58px", border: "1px solid", height: 231, width: 503}} >
-                <img src={Smilecloud} style={{width: 58, marginTop: 70, marginLeft: 227}}/>
+                <img src={SadCloud} style={{width: 58, marginTop: 70, marginLeft: 227}}/>
                 <p style={{color: 'black', fontWeight: 'bold', marginLeft: 110}}> На данный момент у вас нету друзей </p>
                 </ul>
                 </div>

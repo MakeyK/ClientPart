@@ -14,6 +14,12 @@ import Chelik from '../Files/Chelik.png'
 import FileList from "../components/FileList";
 import { selectAllFiles } from "../http/userApi";
 import ProgressBar from 'react-bootstrap/ProgressBar';
+import Table from 'react-bootstrap/Table';
+import Dropdown from 'react-bootstrap/Dropdown';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
+import NavBar3 from '../components/NavBar3' 
+
 
 
 const Basket = observer(() => {
@@ -31,9 +37,9 @@ const Basket = observer(() => {
     const [new_password_check,setNewPasswordCheck] = useState('')
     const [completed, setCompleted] = useState(0);
 
-    useEffect(() => {
-      setInterval(() => setCompleted(Math.floor(Math.random() * 100) + 1), 2000);
-    }, []);
+    // useEffect(() => {
+    //   setInterval(() => setCompleted(Math.floor(Math.random() * 100) + 1), 2000);
+    // }, []);
     const recent = async() => {
         let recent = `recent`
         navigate(RECENT_ROUTE)
@@ -116,10 +122,60 @@ const Basket = observer(() => {
                             onClick={basket}>
                             {isLogin ? '' : 'Увеличить объём хранилища'}
                 </Button></p>
-        <Card style={{width: 1380, borderRadius: 36, height: 760, fontFamily:"Play", marginTop: 50, marginLeft: 457, position:'absolute', backgroundColor: '#DBDBDB'}}>
-                
+                <Card style={{width: 1380, borderRadius: 36, height: 760, fontFamily:"Play", marginTop: 50, marginLeft: 457, position:'absolute', backgroundColor: '#DBDBDB'}}>
+        <p style={{paddingLeft: 81, paddingTop: 58, fontSize: 28}}>КОРЗИНА</p>
+        <ButtonToolbar aria-label="Toolbar with button groups" style={{position: 'absolute', paddingTop: 117}}>
+            <Table striped bordered hover style={{width: 255, height:42, marginLeft: 76, textAlign: 'center', borderRadius: '26px', overflow: 'hidden'}}>
+      <thead>
+        <tr>
+          <th style={{fontSize: 16}}> <NavLink to={FORGOTPASSWORD_ROUTE} style={{color:'black'}}> Файлы </NavLink></th>
+          <th style={{fontSize: 16}}> <NavLink style={{color:'black'}}> Папки </NavLink></th>
+        </tr>
+      </thead>
+        </Table>
+        <hr
+        style={{width: 41, position: 'absolute', marginTop: 22, marginLeft: 333, transform:' rotateZ(90deg)'}}
+      className="my-12 h-0.5 border-t-0 bg-neutral-100 opacity-100 dark:opacity-50"
+    /> 
+     <ButtonGroup className="me-2" aria-label="First group">
+      <Dropdown style={{paddingLeft: 44}}>
+      <Dropdown.Toggle style={{borderRadius:26, fontWeight:'bold',width: 185, height: 42 }} variant="light" id="dropdown-basic">
+             Пользователи
+        </Dropdown.Toggle>
+        <Dropdown.Menu style={{fontWeight:'bold', borderRadius: 26, width: 185, paddingLeft: 5}}>
+            <Dropdown.Item style={{borderRadius:26, width: 175}} href="#">Toxic</Dropdown.Item>
+            <Dropdown.Item style={{borderRadius:26, width: 175}} href="#">Serotonin</Dropdown.Item>
+        </Dropdown.Menu>
+        </Dropdown>
+      </ButtonGroup>
+      <ButtonGroup className="me-2" aria-label="Second group">
+      <Dropdown style={{paddingLeft: 22}}>
+        <Dropdown.Toggle style={{borderRadius:26, fontWeight:'bold',width: 185, height: 42}} variant="light" id="dropdown-basic">
+             Сортировать
+        </Dropdown.Toggle>
+        <Dropdown.Menu style={{fontWeight:'bold', borderRadius: 26, width: 185, paddingLeft: 5}}>
+            <Dropdown.Item style={{borderRadius:26, width: 175}} href="#">По дате создания</Dropdown.Item>
+        </Dropdown.Menu>
+        </Dropdown>
+      </ButtonGroup>
+    </ButtonToolbar>
+    
+    <table style={{marginTop: 63, marginLeft: 59}} className="min-w-full text-left text-sm font-light">
+              <thead className="border-b font-medium dark:border-neutral-500">
+                <tr>
+                  <th style={{}} scope="col" className="px-6 py-4">Наименование</th>
+                  <th style={{}} scope="col" className="px-6 py-4">Дата и время</th>
+                  <th style={{}} scope="col" className="px-6 py-4">Владелец</th>
+                  <th style={{}} scope="col" className="px-6 py-4">Расположение</th>
+                </tr>
+              </thead>
+            </table>
+            <hr
+        style={{width: 1378, border: '1px solid', position: 'absolute', marginTop: 235}}
+      className="my-12 h-0.5 border-t-0 bg-neutral-100 opacity-100 dark:opacity-50"/>
+  
         </Card>
-        
+        <NavBar3/>
     </Card>
         </div>
     );

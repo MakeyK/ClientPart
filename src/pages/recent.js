@@ -18,6 +18,8 @@ import Table from 'react-bootstrap/Table';
 import Dropdown from 'react-bootstrap/Dropdown';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
+import NavBar3 from '../components/NavBar3' 
+
 
 const Recent = observer(() => {
     document.body.style.backgroundImage ="url(/cloud.png)";
@@ -34,9 +36,9 @@ const Recent = observer(() => {
     const [new_password_check,setNewPasswordCheck] = useState('')
     const [completed, setCompleted] = useState(0);
 
-    useEffect(() => {
-      setInterval(() => setCompleted(Math.floor(Math.random() * 100) + 1), 2000);
-    }, []);
+    // useEffect(() => {
+    //   setInterval(() => setCompleted(Math.floor(Math.random() * 100) + 1), 2000);
+    // }, []);
     const recent = async() => {
         let recent = `recent`
         navigate(RECENT_ROUTE)
@@ -173,6 +175,7 @@ const Recent = observer(() => {
       className="my-12 h-0.5 border-t-0 bg-neutral-100 opacity-100 dark:opacity-50"/>
   
         </Card>
+    <NavBar3/> 
     </Card>
         </div>
     );
