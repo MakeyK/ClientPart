@@ -28,8 +28,21 @@ export const selectAllFiles = async () => {
         const {data} = await $authHost.get(`cwh/select/all_user_files`, {
             headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
         })
-        // console.log("baf")
-        return data
+        console.log(data)
+        return data.user_files
+        
+    } catch (e) {
+        alert(e.response.data.message)
+    }
+}
+
+export const selectAllFilesOrdered = async () => {
+    try {
+        const {data} = await $authHost.get(`cwh/select/all_user_files?order=createdAt`, {
+            headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
+        })
+        console.log(data)
+        return data.user_files
         
     } catch (e) {
         alert(e.response.data.message)

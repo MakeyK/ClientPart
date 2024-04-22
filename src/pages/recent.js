@@ -19,6 +19,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import NavBar3 from '../components/NavBar3' 
+import { selectAllFilesOrdered } from "../http/userApi";
 
 
 const Recent = observer(() => {
@@ -27,6 +28,7 @@ const Recent = observer(() => {
     document.body.style.backgroundPositionY = "450px"
     document.body.style.backgroundColor="#D0D0D0"
     const {user} = useContext(Context)
+    const {UserRequest} = useContext(Context) 
     const navigate =useNavigate()
     const location = useLocation()
     const isLogin = location.pathname === LOGIN_ROUTE
@@ -39,6 +41,10 @@ const Recent = observer(() => {
     // useEffect(() => {
     //   setInterval(() => setCompleted(Math.floor(Math.random() * 100) + 1), 2000);
     // }, []);
+    useEffect(() => {    
+      selectAllFilesOrdered().then(data => {UserRequest.setUserRequest(data) 
+        console.log(`Selected ${data}`)})
+      }, [])
     const recent = async() => {
         let recent = `recent`
         navigate(RECENT_ROUTE)
@@ -173,7 +179,7 @@ const Recent = observer(() => {
             <hr
         style={{width: 1378, border: '1px solid', position: 'absolute', marginTop: 235}}
       className="my-12 h-0.5 border-t-0 bg-neutral-100 opacity-100 dark:opacity-50"/>
-  
+        <FileList users={UserRequest.getUser()}/>
         </Card>
     <NavBar3/> 
     </Card>

@@ -16,6 +16,8 @@ import SadCloud from '../Files/Sadcloud.png'
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import Upload from 'rc-upload'
+
 
 const EditProfile = observer(() => {
     document.body.style.backgroundImage ="url(/cloud.png)";
@@ -34,10 +36,6 @@ const EditProfile = observer(() => {
     const [password,setPassword] = useState('')
     const [password_check,setPasswordCheck] = useState('')
     const [status, setStatus] = useState(false);
-    
-    const clickgray = event => {
-
-    }
 
     const forgotpassword = async() => {
         let forgotpassword = `forgotpassword`
@@ -90,34 +88,51 @@ const EditProfile = observer(() => {
             alert(e)
         }
     }
+    const [imgData, setImgdata] = useState();
+    const [fileName, setFileName] = useState();
+    const [fileSize, setFileSize] = useState();
+    const [percentage, setPercentage] = useState(0);
+    const [isUploading, setIsUploading] = useState(false);
 
-    const fileRef = React.useRef();
-    let [file, setFile] = React.useState();
-    const handleChange = (event) => {
-        setFile(event.target.files[0])};
+    const props = {
+      action: `${process.env.REACT_APP_API_URL}cwh/upload/avatar`,
+      headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
+      method: "PATCH",
+      beforeUpload(file) {
+        setIsUploading(true);
+        setFileName(file.name);
+        setFileSize(Math.floor(file.size / 1000));
+        if (file.type === "image/png") {
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            setImgdata(reader.result);
+          };
+          reader.readAsDataURL(file);
+        }
+        console.log(file.name)
+      },
+      onSuccess() {
+        setIsUploading(false);
+      },
+      onProgress(step) {
+        setPercentage(Math.round(step.percent));
+      },
+      onError(err) {
+        console.log("onError", err);
+      }
+    };
+
 
         const modalContent = (
             <div style={{textAlign:'center', marginTop: 427}} className="disk_upload">
               <p style={{fontFamily:"Play", display:'inline-block'}}>
-              <Button type='file-input'
-              ref={fileRef} 
-              onChange={handleChange} 
-              className="upload"
-              id="upload"
-              onClick={() => fileRef.current.click()}
-              name="file_avatar"
+              <Upload {...props}>
+              <Button id="upload-button"
               style={{borderRadius: 41, height:70, width:384}}
               variant={"outline-dark"}
               size="lg">
-                 { file &&  file!==undefined && file!==null &&
-                <div>
-                <p>{file.name}</p>
-                <p>{file.size}</p>
-                <p>{file.type}</p>
-                </div>
-                }  
                 Открыть изображение
-                </Button>
+                </Button></Upload>    
               <Button 
               style={{borderRadius: 41, height:70, width:384}}
               variant={"outline-dark"}
