@@ -19,7 +19,8 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import NavBar3 from '../components/NavBar3' 
-import { selectAllFilesOrdered } from "../http/userApi";
+import { selectAllFilesNew } from "../http/userApi";
+import { selectAllFilesOld } from "../http/userApi";
 
 
 const Recent = observer(() => {
@@ -42,7 +43,7 @@ const Recent = observer(() => {
     //   setInterval(() => setCompleted(Math.floor(Math.random() * 100) + 1), 2000);
     // }, []);
     useEffect(() => {    
-      selectAllFilesOrdered().then(data => {UserRequest.setUserRequest(data) 
+      selectAllFilesNew().then(data => {UserRequest.setUserRequest(data) 
         console.log(`Selected ${data}`)})
       }, [])
     const recent = async() => {

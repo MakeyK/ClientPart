@@ -3,7 +3,7 @@ import {Card, Container, Form, Button, Col, Nav, ListGroup} from 'react-bootstra
 import { LOGIN_ROUTE, REGISTRATION_ROUTE, FORGOTPASSWORD_ROUTE,RECENT_ROUTE, FAVORITE_ROUTE, BASKET_ROUTE, MYSTORAGE_ROUTE } from "../utils/consts";
 // import Row from 'react-bootstrap/Row'
 import { useLocation, NavLink, useNavigate } from "react-router-dom";
-import { changePassword, check, login, registration } from "../http/userApi";
+import { changePassword, check, login, registration} from "../http/userApi";
 import {observer} from "mobx-react-lite";
 // import Image from 'react-bootstrap/Image';
 import {Context} from "../index";
@@ -20,6 +20,8 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import NavBar3 from "../components/NavBar3";
 import Upload from 'rc-upload'
+import { selectAllFilesNew } from "../http/userApi";
+import { selectAllFilesOld } from "../http/userApi";
 
 
 const MyStorage = observer(() => {
@@ -75,7 +77,11 @@ const MyStorage = observer(() => {
       }
     };
 
-    
+    useEffect(() => {    
+      selectAllFilesNew().then(data => {UserRequest.setUserRequest(data) 
+        console.log(`Selected ${data}`)})
+      }, [])
+
     useEffect(() => {    
       selectAllFiles().then(data => {UserRequest.setUserRequest(data) 
         console.log(`Selected ${data}`)})
@@ -83,6 +89,19 @@ const MyStorage = observer(() => {
       // useEffect(() => {
       //   setInterval(() => setCompleted(Math.floor(Math.random() * 100) + 1), 2000);
       // }, []);
+      const oldfiles = async () =>
+      {
+        const response = await selectAllFilesOld() 
+        UserRequest.setUserRequest(response) 
+        return response 
+      }
+
+    const newfiles = async () =>
+    {
+      const response = await selectAllFilesNew() 
+      UserRequest.setUserRequest(response) 
+      return response 
+    }
 
     const recent = async() => {
         let recent = `recent`
@@ -203,8 +222,8 @@ const MyStorage = observer(() => {
         <Dropdown.Menu style={{fontWeight:'bold', borderRadius: 26, width: 287, paddingLeft: 5}}>
             <Dropdown.Item style={{borderRadius:26, width: 258}} href="#">Сначала большие файлы/папки</Dropdown.Item>
             <Dropdown.Item style={{borderRadius:26, width: 273}} href="#">Сначала маленькие файлы/папки</Dropdown.Item>
-            <Dropdown.Item style={{borderRadius:26, width: 133}} href="#">Сначала новые</Dropdown.Item>
-            <Dropdown.Item style={{borderRadius:26, width: 138}} href="#">Сначала старые</Dropdown.Item>
+            <Dropdown.Item onClick={newfiles} style={{borderRadius:26, width: 133}} href="#">Сначала новые</Dropdown.Item>
+            <Dropdown.Item onClick={oldfiles} style={{borderRadius:26, width: 138}} href="#">Сначала старые</Dropdown.Item>
         </Dropdown.Menu>
         </Dropdown>
       </ButtonGroup>

@@ -36,9 +36,22 @@ export const selectAllFiles = async () => {
     }
 }
 
-export const selectAllFilesOrdered = async () => {
+export const selectAllFilesNew = async () => {
     try {
-        const {data} = await $authHost.get(`cwh/select/all_user_files?order=createdAt`, {
+        const {data} = await $authHost.get(`cwh/select/all_user_files?order=new`, {
+            headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
+        })
+        console.log(data)
+        return data.user_files
+        
+    } catch (e) {
+        alert(e.response.data.message)
+    }
+}
+
+export const selectAllFilesOld = async () => {
+    try {
+        const {data} = await $authHost.get(`cwh/select/all_user_files?order=old`, {
             headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
         })
         console.log(data)
