@@ -6,7 +6,7 @@ import Navbar from "react-bootstrap/Navbar";
 import {NavLink} from "react-router-dom";
 import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
-import {EDITPROFILE_ROUTE, LOGIN_ROUTE, MAIN_ROUTE, REGISTRATION_ROUTE} from "../utils/consts";
+import {EDITPROFILE_ROUTE, LOGIN_ROUTE, MAIN_ROUTE, MYSTORAGE_ROUTE, REGISTRATION_ROUTE} from "../utils/consts";
 import {Button} from "react-bootstrap";
 import {observer} from "mobx-react-lite";
 import Container from "react-bootstrap/Container";
@@ -22,9 +22,16 @@ const NavBar3 = observer(() => {
     const navigate =useNavigate()
     const location = useLocation()
     const isLogin = location.pathname === LOGIN_ROUTE
+
     const logOut = () => {
         user.setUser({})
         user.setIsAuth(false)
+        localStorage.removeItem(`token`)
+        navigate(MAIN_ROUTE)
+    }
+    const mystorage = async() => {
+        let mystorage = `mystorage`
+        navigate(MYSTORAGE_ROUTE)
     }
     const mainn = async() => {
         let mainn = `main`
@@ -49,7 +56,7 @@ const NavBar3 = observer(() => {
                     style={{width: 192}}
                     size={"lg"}
                     variant={"outline-link"}
-                    onClick={mainn}
+                    onClick={mystorage}
                     // onClick={(mainn) => {user.setIsAuth(true)}}
                     > 
                     <div> <p class="text-white"
@@ -88,7 +95,7 @@ const NavBar3 = observer(() => {
                             style={{ borderRadius: 41}}
                             size={"lg"}
                             variant={"outline-light"}
-                            onClick={mainn}
+                            onClick={logOut}
                             // onClick={(mainn) => {user.setIsAuth(true)}}
                             > 
                             <div> <p class="text-white"

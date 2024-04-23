@@ -39,7 +39,6 @@ const Registration = observer(() => {
     catch(e){
     alert(e)
     }
-    
     }
     return (
         <Container
@@ -49,7 +48,7 @@ const Registration = observer(() => {
             <h2 className="m-auto" style={{color:'black', fontSize: '36px', height: 300, width: 239, position:'relative'}}>{isLogin ? 'Авторизация' : 'Регистрация'}</h2>
             <Form className="d-flex flex-column" style={{position:'relative', paddingBottom:'100px'}}>
                 <Form.Control
-                style={{borderRadius: 70, height: 71, border: "1px solid"}}
+                style={{borderRadius: 70, height: 71, border: "1px solid", fontSize: '24px'}}
                 className="mt-3"
                 size="lg"
                 placeholder = "Введите ваш email..."
@@ -59,7 +58,7 @@ const Registration = observer(() => {
                 />
                 
                 <Form.Control
-                style={{borderRadius: 70, height: 71, border: "1px solid"}}
+                style={{borderRadius: 70, height: 71, border: "1px solid", fontSize: '24px'}}
                 className="mt-3"
                 size="lg"
                 placeholder = "Введите ваш пароль..."
@@ -69,7 +68,7 @@ const Registration = observer(() => {
                 />
 
                 <Form.Control 
-                style={{borderRadius: 70, height: 71, border: "1px solid"}}
+                style={{borderRadius: 70, height: 71, border: "1px solid", fontSize: '24px'}}
                 className="mt-3"
                 size="lg"
                 placeholder = "Введите ваш пароль ещё раз..."

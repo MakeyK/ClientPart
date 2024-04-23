@@ -31,7 +31,7 @@ const MyStorage = observer(() => {
     document.body.style.backgroundColor="#D0D0D0"
     const {user} = useContext(Context)
     const {UserRequest} = useContext(Context) 
-    const navigate =useNavigate()
+    const navigate = useNavigate()
     const location = useLocation()
     const isLogin = location.pathname === LOGIN_ROUTE
     const [email, setEmail] = useState('')
@@ -76,62 +76,69 @@ const MyStorage = observer(() => {
       }
     };
 
-    useEffect(() => {    
-      selectAllFilesNew().then(data => {UserRequest.setUserRequest(data) 
-        console.log(`Selected ${data}`)})
-      }, [])
-
-    useEffect(() => {    
-      selectAllFiles().then(data => {UserRequest.setUserRequest(data) 
-        console.log(`Selected ${data}`)})
-      }, [])
-      // useEffect(() => {
-      //   setInterval(() => setCompleted(Math.floor(Math.random() * 100) + 1), 2000);
-      // }, []);
-      const oldfiles = async () =>
-      {
-        const response = await selectAllFilesOld() 
+    
+    const oldfiles = async () =>
+    {
+      const response = await selectAllFilesOld() 
         UserRequest.setUserRequest(response) 
         return response 
       }
-
-    const newfiles = async () =>
-    {
-      const response = await selectAllFilesNew() 
-      UserRequest.setUserRequest(response) 
-      return response 
-    }
-
-    const recent = async() => {
+      
+      const newfiles = async () =>
+      {
+        const response = await selectAllFilesNew() 
+        UserRequest.setUserRequest(response) 
+        return response 
+      }
+      
+      const recent = async() => {
         let recent = `recent`
         navigate(RECENT_ROUTE)
     }
     const basket = async() => {
         let basket = `basket`
         navigate(BASKET_ROUTE)
-    }
-    const favorite = async() => {
+      }
+      const favorite = async() => {
         let favorite = `favorite`
         navigate(FAVORITE_ROUTE)
     }
     const mystorage = async() => {
-        let mystorage = `mystorage`
-        navigate(MYSTORAGE_ROUTE)
+      let mystorage = `mystorage`
+      navigate(MYSTORAGE_ROUTE)
     }
-
+    
     const click = async () =>
     {
-        try
-        {
-                const response = await changePassword(email, old_password, new_password,  new_password_check)
-                navigate(RECENT_ROUTE)
-        }
-        catch(e)
-        {
+      try
+      {
+        const response = await changePassword(email, old_password, new_password,  new_password_check)
+        navigate(RECENT_ROUTE)
+      }
+      catch(e)
+      {
         alert(e)
-        }
+      }
     }
-    return (
+    if(!localStorage.getItem('token')) return(
+      navigate(REGISTRATION_ROUTE)
+    )
+    else {
+      useEffect(() => {    
+        selectAllFilesNew().then(data => {UserRequest.setUserRequest(data) 
+          console.log(`Selected ${data}`)})
+        }, [])
+        
+        useEffect(() => {    
+          selectAllFiles().then(data => {UserRequest.setUserRequest(data) 
+            console.log(`Selected ${data}`)})
+          }, [])
+          useEffect(() => {
+            setInterval(() => setCompleted(Math.floor(Math.random() * 100) + 1), 2000);
+          }, []);
+        
+        
+        return (
         <div
         style = {{}}>
         <Card style={{ width: 428, height: 856, marginTop: 110, fontFamily:"Play", fontWeight: 'bold', backgroundColor: '#DBDBDB'}}>
@@ -193,7 +200,7 @@ const MyStorage = observer(() => {
             <Table striped bordered hover style={{width: 255, height:42, marginLeft: 76, textAlign: 'center', borderRadius: '26px', overflow: 'hidden'}}>
       <thead>
         <tr>
-          <th style={{fontSize: 16}}> <NavLink to={FORGOTPASSWORD_ROUTE} style={{color:'black'}}> Файлы </NavLink></th>
+          <th style={{fontSize: 16}}> <NavLink style={{color:'black'}}> Файлы </NavLink></th>
           <th style={{fontSize: 16}}> <NavLink style={{color:'black'}}> Папки </NavLink></th>
         </tr>
       </thead>
@@ -260,6 +267,6 @@ const MyStorage = observer(() => {
     </Card>
         </div>
     );
-});
+}});
 
 export default MyStorage;

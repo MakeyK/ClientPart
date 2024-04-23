@@ -53,23 +53,21 @@ const EditProfile = observer(() => {
       setModalIsOpen(false);
     };
     
-    useEffect(() => {
-      fetch_avatar().then(data => 
-        {
-          user.setAvatar(data)
-        })
+    // useEffect(() => {
+    //   fetch_avatar().then(data => 
+    //     {
+    //       user.setAvatar(data)
+    //     })
         
-      }, [])
+    //   }, [])
       
-      useEffect(() => {
-        getProfile().then(data => 
-          {
-            user.setEmail(data.email)
-            user.setNickname(data.nickname)
-          })
-          
-          
-        }, [])
+    //   useEffect(() => {
+    //     getProfile().then(data => 
+    //       {
+    //         user.setEmail(data.email)
+    //         user.setNickname(data.nickname)
+    //       })
+    //     }, [])
         
         // let nickname = user.getNickname()
         // let email = user.getEmail()
@@ -87,32 +85,6 @@ const EditProfile = observer(() => {
                   alert(e)
               }
           }
-    // const click = async () =>{
-    // console.log(email)
-    // try
-    // {
-    //     if (isLogin)
-    //     {
-    //         const response = await login(email, password, password_check)
-    //         console.log(response)
-    //     }
-    //     else
-    //     {
-    //         console.log(email)
-    //         const response = await registration(email, password, password_check)
-    //         console.log(response)
-    //     }
-    //     user.setUser()
-    //     user.setIsAuth(true)
-    //     navigate(MAIN_ROUTE)
-    // }
-    //     catch(e)
-    //     {
-    //         alert(e)
-    //     }
-    // }
-
-
     const [imgData, setImgdata] = useState();
     const [fileName, setFileName] = useState();
     const [fileSize, setFileSize] = useState();
@@ -167,7 +139,29 @@ const EditProfile = observer(() => {
               </p>
             </div>
           );
-    return (
+          if(user.getisAuth()==false) return 0 
+          else {
+
+        if(!localStorage.getItem('token')) return(
+          navigate(REGISTRATION_ROUTE)
+        )
+        else {
+          useEffect(() => {
+            fetch_avatar().then(data => 
+              {
+                user.setAvatar(data)
+              })
+              
+            }, [])
+            
+            useEffect(() => {
+              getProfile().then(data => 
+                {
+                  user.setEmail(data.email)
+                  user.setNickname(data.nickname)
+                })
+              }, [])
+        return (
         <Container
         className = 'd-flex justify-content-center align-items-center'
         style = {{width: 1402, height: 446, marginTop: 181}}>
@@ -261,7 +255,7 @@ const EditProfile = observer(() => {
         <NavBar4/>
         </Container>
     );
-});
+}}});  
 
 export default EditProfile;
 

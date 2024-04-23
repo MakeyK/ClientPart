@@ -38,14 +38,7 @@ const Recent = observer(() => {
     const [new_password,setNewPassword] = useState('')
     const [new_password_check,setNewPasswordCheck] = useState('')
     const [completed, setCompleted] = useState(0);
-
-    // useEffect(() => {
-    //   setInterval(() => setCompleted(Math.floor(Math.random() * 100) + 1), 2000);
-    // }, []);
-    useEffect(() => {    
-      selectAllFilesNew().then(data => {UserRequest.setUserRequest(data) 
-        console.log(`Selected ${data}`)})
-      }, [])
+    
     const recent = async() => {
         let recent = `recent`
         navigate(RECENT_ROUTE)
@@ -74,6 +67,18 @@ const Recent = observer(() => {
         alert(e)
         }
     }
+    if(!localStorage.getItem('token')) return(
+      navigate(REGISTRATION_ROUTE)
+    )
+    else {
+      useEffect(() => {    
+        selectAllFilesNew().then(data => {UserRequest.setUserRequest(data) 
+          console.log(`Selected ${data}`)})
+        }, [])
+        // useEffect(() => {
+    //   setInterval(() => setCompleted(Math.floor(Math.random() * 100) + 1), 2000);
+    // }, []);
+    
     return (
         <div
         style = {{}}>
@@ -185,6 +190,6 @@ const Recent = observer(() => {
     </Card>
         </div>
     );
-});
+}});
 
 export default Recent;

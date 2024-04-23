@@ -46,8 +46,7 @@ const NavBar = observer(() => {
                     </Nav>
                     :
                     <Nav className="ml-auto" style={{color: 'white'}}>
-                        <Button variant={"outline-light"} onClick={() => user.setIsAuth(true)}><div> <NavLink to={LOGIN_ROUTE}>
-                            <p>Авторизация</p></NavLink></div></Button>
+                       
                     </Nav>
                 }
             </Container>

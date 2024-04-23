@@ -13,6 +13,8 @@ import Star from '../Files/Star.png'
 import Chelik from '../Files/Chelik.png'
 import FileList from "../components/FileList";
 import { selectAllFiles } from "../http/userApi";
+import { selectAllFilesNew } from "../http/userApi";
+import { selectAllFilesOld } from "../http/userApi";
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Table from 'react-bootstrap/Table';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -28,6 +30,7 @@ const Basket = observer(() => {
     document.body.style.backgroundPositionY = "450px"
     document.body.style.backgroundColor="#D0D0D0"
     const {user} = useContext(Context)
+    const {UserRequest} = useContext(Context) 
     const navigate =useNavigate()
     const location = useLocation()
     const isLogin = location.pathname === LOGIN_ROUTE
@@ -37,12 +40,9 @@ const Basket = observer(() => {
     const [new_password_check,setNewPasswordCheck] = useState('')
     const [completed, setCompleted] = useState(0);
 
-    // useEffect(() => {
-    //   setInterval(() => setCompleted(Math.floor(Math.random() * 100) + 1), 2000);
-    // }, []);
     const recent = async() => {
-        let recent = `recent`
-        navigate(RECENT_ROUTE)
+      let recent = `recent`
+      navigate(RECENT_ROUTE)
     }
     const basket = async() => {
         let basket = `basket`
@@ -51,26 +51,37 @@ const Basket = observer(() => {
     const favorite = async() => {
         let favorite = `favorite`
         navigate(FAVORITE_ROUTE)
-    }
-    const mystorage = async() => {
+      }
+      const mystorage = async() => {
         let mystorage = `mystorage`
         navigate(MYSTORAGE_ROUTE)
-    }
-    const click = async () =>
-    {
+      }
+      const click = async () =>
+      {
         try
         {
-                const response = await changePassword(email, old_password, new_password,  new_password_check)
-                navigate(LOGIN_ROUTE)
+          const response = await changePassword(email, old_password, new_password,  new_password_check)
+          navigate(LOGIN_ROUTE)
         }
         catch(e)
         {
-        alert(e)
+          alert(e)
         }
-    }
-    return (
-        <div
-        style = {{}}>
+      }
+      if(!localStorage.getItem('token')) return(
+        navigate(REGISTRATION_ROUTE))
+        else {
+          useEffect(() => {    
+            selectAllFilesNew().then(data => {UserRequest.setUserRequest(data) 
+              console.log(`Selected ${data}`)})
+            }, [])
+            // useEffect(() => {
+            //   setInterval(() => setCompleted(Math.floor(Math.random() * 100) + 1), 2000);
+            // }, []);
+          
+          return (
+            <div
+            style = {{}}>
         <Card style={{ width: 428, height: 856, marginTop: 110, fontFamily:"Play", fontWeight: 'bold', backgroundColor: '#DBDBDB'}}>
         <p style={{paddingBottom:50, paddingLeft: 50, paddingTop: 48}}>
                 <Button
@@ -173,11 +184,12 @@ const Basket = observer(() => {
         style={{width: 1378, border: '1px solid', position: 'absolute', marginTop: 235}}
       className="my-12 h-0.5 border-t-0 bg-neutral-100 opacity-100 dark:opacity-50"/>
   
+    <FileList users={UserRequest.getUser()}/>
         </Card>
         <NavBar3/>
     </Card>
         </div>
     );
-});
+}});
 
 export default Basket;

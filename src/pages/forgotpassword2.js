@@ -33,6 +33,10 @@ const ForgotPassword2 = observer(() => {
         alert(e)
         }
     }
+    if(!localStorage.getItem('token')) return(
+        navigate(REGISTRATION_ROUTE)
+      )
+    else {
     return (
         <Container
         className = 'd-flex justify-content-center align-items-center '
@@ -97,6 +101,6 @@ const ForgotPassword2 = observer(() => {
         <NavBar/>
         </Container>
     );
-});
+}});
 
 export default ForgotPassword2;
