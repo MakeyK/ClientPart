@@ -62,7 +62,6 @@ const MyStorage = observer(() => {
           };
           reader.readAsDataURL(file_storage);
         }
-        console.log(file_storage.name)
       },
       onSuccess() {
         // Finish upload
@@ -125,7 +124,6 @@ const MyStorage = observer(() => {
         try
         {
                 const response = await changePassword(email, old_password, new_password,  new_password_check)
-                console.log(response)
                 navigate(RECENT_ROUTE)
         }
         catch(e)

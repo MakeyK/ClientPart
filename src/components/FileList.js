@@ -6,7 +6,6 @@ import { Card, Col, Container } from "react-bootstrap";
 
 const FileList = observer(({users}) => { 
  
-    console.log(users) 
     return ( 
         
         <ListGroup style={{display: "inline-block",width: 1370, borderRadius: 40, paddingLeft: 15, color: '#FFFFFF4D', overflow: 'scroll'}}> 

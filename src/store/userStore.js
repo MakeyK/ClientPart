@@ -5,6 +5,9 @@ export default class UserStore
     constructor() {
         this._isAuth = true
         this._user = {}
+        this._avatar = []
+        this._nickname = []
+        this._email = []
         makeAutoObservable (this)
     }
     setIsAuth(bool) {
@@ -18,5 +21,29 @@ export default class UserStore
     }
     getuser() {
         return this._user
+    }
+    setAvatar(avatar)
+    {
+        this._avatar=avatar
+    }
+    getAvatar()
+    {
+        return this._avatar
+    }
+    getNickname()
+    {
+        return this._nickname
+    }
+    setNickname(nickname)
+    {
+        this._nickname=nickname
+    }
+    getEmail()
+    {   
+        return this._email
+    }
+    setEmail(email)
+    {
+        this._email=email
     }
 }

@@ -1,22 +1,26 @@
-import React, {useContext, useRef, useState}  from "react";
+import React, {useContext, useRef, useState, useEffect}  from "react";
 import {Card, Container, Form, Button, Col } from 'react-bootstrap'
 import { LOGIN_ROUTE, REGISTRATION_ROUTE, EDITPROFILE_ROUTE, MAIN_ROUTE, FORGOTPASSWORD_ROUTE, FORGOTPASSWORD_ROUTE2 } from "../utils/consts";
 // import Row from 'react-bootstrap/Row'
 import { useLocation, NavLink, useNavigate } from "react-router-dom";
-import { login, registration, selectAllFiles } from "../http/userApi";
+import { changeProfile, getProfile, login, registration, selectAllFiles } from "../http/userApi";
 import {observer} from "mobx-react-lite";
 import {Context} from "../index";
-import Avatar from 'react-avatar';
+// import Avatar from 'react-avatar';
 import Modal from 'react-modal';
 import NavBar from "../components/NavBar";
 // import Smilecloud from '../Files/Smilecloud.png'
-import Telegramm from '../Files/telegramm.png'
 import SadCloud from '../Files/Sadcloud.png'
 // import Dropdown from 'react-bootstrap/Dropdown';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
+// import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Upload from 'rc-upload'
+import { fetch_avatar } from "../http/userApi";
+import AvatarList2 from "../components/AvatarList2";
+import NavBar3 from '../components/NavBar3'
+import NavBar2 from '../components/NavBar2'
+import NavBar4 from "../components/NavBar4";
 
 
 const EditProfile = observer(() => {
@@ -31,8 +35,6 @@ const EditProfile = observer(() => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [uploadded, setUploaded] = useState();
     const isLogin = location.pathname === LOGIN_ROUTE
-    const [email, setEmail] = useState('')
-    const [nickname, setNickname] = useState('')
     const [password,setPassword] = useState('')
     const [password_check,setPasswordCheck] = useState('')
     const [status, setStatus] = useState(false);
@@ -42,6 +44,7 @@ const EditProfile = observer(() => {
         navigate(FORGOTPASSWORD_ROUTE2)
     }
 
+    
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const openModal = () => {
       setModalIsOpen(true);
@@ -49,45 +52,67 @@ const EditProfile = observer(() => {
     const closeModal = () => {
       setModalIsOpen(false);
     };
-  
     
-    // const click1 = async () =>{
-    //     console.log(email)
-    //     try
+    useEffect(() => {
+      fetch_avatar().then(data => 
+        {
+          user.setAvatar(data)
+        })
+        
+      }, [])
+      
+      useEffect(() => {
+        getProfile().then(data => 
+          {
+            user.setEmail(data.email)
+            user.setNickname(data.nickname)
+          })
+          
+          
+        }, [])
+        
+        // let nickname = user.getNickname()
+        // let email = user.getEmail()
+        const [email, setEmail] = useState('')
+        const [nickname, setNickname] = useState('')
+        
+        const AcceptChanges = async() => {
+          try
+          {
+              const response = await changeProfile(nickname, email)
+              console.log(response)
+          }
+              catch(e)
+              {
+                  alert(e)
+              }
+          }
+    // const click = async () =>{
+    // console.log(email)
+    // try
+    // {
+    //     if (isLogin)
     //     {
-    //         const response = await selectAllFiles()
-    //         return response
+    //         const response = await login(email, password, password_check)
+    //         console.log(response)
     //     }
-    //         catch(e)
-    //         {
-    //             alert(e)
-    //         }
+    //     else
+    //     {
+    //         console.log(email)
+    //         const response = await registration(email, password, password_check)
+    //         console.log(response)
     //     }
+    //     user.setUser()
+    //     user.setIsAuth(true)
+    //     navigate(MAIN_ROUTE)
+    // }
+    //     catch(e)
+    //     {
+    //         alert(e)
+    //     }
+    // }
 
-    const click = async () =>{
-    console.log(email)
-    try
-    {
-        if (isLogin)
-        {
-            const response = await login(email, password, password_check)
-            console.log(response)
-        }
-        else
-        {
-            console.log(email)
-            const response = await registration(email, password, password_check)
-            console.log(response)
-        }
-        user.setUser()
-        user.setIsAuth(true)
-        navigate(MAIN_ROUTE)
-    }
-        catch(e)
-        {
-            alert(e)
-        }
-    }
+
     const [imgData, setImgdata] = useState();
     const [fileName, setFileName] = useState();
     const [fileSize, setFileSize] = useState();
@@ -109,7 +134,7 @@ const EditProfile = observer(() => {
           };
           reader.readAsDataURL(file);
         }
-        console.log(file.name)
+        // console.log(file.name)
       },
       onSuccess() {
         setIsUploading(false);
@@ -118,7 +143,7 @@ const EditProfile = observer(() => {
         setPercentage(Math.round(step.percent));
       },
       onError(err) {
-        console.log("onError", err);
+        // console.log("onError", err);
       }
     };
 
@@ -166,7 +191,7 @@ const EditProfile = observer(() => {
             <span class="badge badge-primary badge-pill"></span>
             </li>
             </ul><p>
-            <Avatar size={"197px"} round src={Telegramm}/>
+            <AvatarList2 users={user.getAvatar()}/>
             </p>
             <ButtonToolbar aria-label="Toolbar with button groups" style={{width: 390}}>
       <ButtonGroup className="me-2" aria-label="First group">
@@ -198,24 +223,24 @@ const EditProfile = observer(() => {
     
     <div style={{width: 503, fontFamily:'Play', marginLeft: 47, fontSize: '19px'}}>
     <p style={{fontFamily:"Play", color:"#A8A8A8"}}>Ваше имя</p>
-    <Form.Floating className="mb-2">
+    <Form className="d-flex flex-column" style={{position:'relative', paddingBottom:'70px', width: 503, height: 70}}>
     <Form.Control
-          style={{borderRadius: 70, border: '1px solid'}}
-          placeholder="text"
+          style={{borderRadius: 70, border: '1px solid', fontSize: '24px', fontWeight: 'bold'}}
+          placeholder= {user.getNickname()}
           value = {nickname}
             onChange = { e => setNickname(e.target.value)}
-          />
-          
-      </Form.Floating>
+          />   
+      </Form>
       <p style={{fontFamily:"Play", color:"#A8A8A8"}}>Ваше почта</p>
-      <Form.Floating>
+      <Form className="d-flex flex-column" style={{position:'relative', paddingBottom:'70px', width: 503, height: 70}}>
       <Form.Control
-        style={{borderRadius: 70, border: '1px solid'}}
+        style={{borderRadius: 70, border: '1px solid', fontSize: '24px', fontWeight: 'bold'}}
           type="email"
           value = {email}
           onChange = { e => setEmail(e.target.value)}
-          placeholder="Ваша почта"/>
-      </Form.Floating>
+          placeholder= {user.getEmail()}
+          />
+      </Form>
         
         </div>
         <p style={{fontFamily:"Play", color:"#A8A8A8", fontSize: '20px'}}>Ваши друзья
@@ -228,12 +253,12 @@ const EditProfile = observer(() => {
             style={{borderRadius: 41, height:70, width:384, marginLeft: 410, marginTop: 10}}
             variant={"outline-dark"}
             size="lg"
-                onClick={forgotpassword}>
+                onClick={AcceptChanges}>
            {isLogin ? '' : 'Применить изменения'} 
         </Button>
         </div>
         </Card> 
-        <NavBar/>
+        <NavBar4/>
         </Container>
     );
 });

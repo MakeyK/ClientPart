@@ -28,7 +28,7 @@ export const selectAllFiles = async () => {
         const {data} = await $authHost.get(`cwh/select/all_user_files`, {
             headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
         })
-        console.log(data)
+        // console.log(data)
         return data.user_files
         
     } catch (e) {
@@ -41,7 +41,7 @@ export const selectAllFilesNew = async () => {
         const {data} = await $authHost.get(`cwh/select/all_user_files?order=new`, {
             headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
         })
-        console.log(data)
+        // console.log(data)
         return data.user_files
         
     } catch (e) {
@@ -54,8 +54,42 @@ export const selectAllFilesOld = async () => {
         const {data} = await $authHost.get(`cwh/select/all_user_files?order=old`, {
             headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
         })
-        console.log(data)
+        // console.log(data)
         return data.user_files
+        
+    } catch (e) {
+        alert(e.response.data.message)
+    }
+}
+export const fetch_avatar = async () => {
+    try {
+        const {data} = await $authHost.get('cwh/select/avatar', {
+            headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
+        })
+        return data
+        
+    } catch (e) {
+        alert(e.response.data.message)
+    }
+}
+export const getProfile = async () => {
+    try {
+        const {data} = await $authHost.get('cwh/select/profile', {
+            headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
+        })
+        return data
+        
+    } catch (e) {
+        alert(e.response.data.message)
+    }
+}
+export const changeProfile = async (nickname, email) => {
+    try {
+        const {data} = await $authHost.patch('cwh/edit/profile', {nickname, email},{
+            headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
+        })
+        console.log(data)
+        return data
         
     } catch (e) {
         alert(e.response.data.message)

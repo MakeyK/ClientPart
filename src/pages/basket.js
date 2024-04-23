@@ -61,7 +61,6 @@ const Basket = observer(() => {
         try
         {
                 const response = await changePassword(email, old_password, new_password,  new_password_check)
-                console.log(response)
                 navigate(LOGIN_ROUTE)
         }
         catch(e)

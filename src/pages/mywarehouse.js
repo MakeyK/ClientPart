@@ -23,7 +23,6 @@ const MyWareHouse = observer(() => {
         try
         {
                 const response = await changePassword(email)
-                console.log(response)
                 navigate(LOGIN_ROUTE)
         }
         catch(e)

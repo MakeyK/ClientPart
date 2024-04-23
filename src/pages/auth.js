@@ -25,10 +25,11 @@ const Auth = observer(() => {
   
         if (isLogin){
             const response = await login(email, password)
-            console.log(response)}
+            // console.log(response)
+        }
         else{  
             const response = await registration(email, password)
-            console.log(response)
+            // console.log(response)
     }
     user.setUser()
     user.setIsAuth(true)

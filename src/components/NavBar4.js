@@ -17,7 +17,7 @@ import { fetch_avatar } from "../http/userApi";
 import AvatarList from "./AvatarList";
 
 
-const NavBar3 = observer(() => {
+const NavBar4 = observer(() => {
     const {user} = useContext(Context)
     const navigate =useNavigate()
     const location = useLocation()
@@ -57,31 +57,7 @@ const NavBar3 = observer(() => {
                     <br></br> Warehouse </p></div>
                 </Button>
                 </Nav>
-        <Form inline>
-            <Row>
-            <Col style={{ width: 615}} xs="auto" >
-                <Form.Control
-                    variant={'outline-dark'}    
-                    style={{ borderRadius: '28px'}}
-                    type="text"
-                    placeholder="Поиск"
-                    
-                />
-            </Col>
-            {/* <Col xs="auto">
-                <Button type="submit">  БИТ </Button>
-            </Col> */}
-            </Row>
-      </Form>
-                <NavLink style={{color:'white'}} to={MAIN_ROUTE}></NavLink>
-                        <p style={{color:'white', marginTop: 10, marginLeft: 450}}>
-                            <Button
-                            style={{borderRadius: 66}}
-                            onClick={editprofile}
-                            variant={'outline-light'}
-                            >
-                        <AvatarList users={user.getAvatar()}/>
-                        </Button></p>
+                
                 {user.getisAuth() ?
                     <Nav style={{color: 'white', marginLeft: 24,borderRadius: 41, border: '3px solid', width: 190, fontSize: 24, fontFamily:"Rubik Mono One",}}>
                         <Button
@@ -104,4 +80,4 @@ const NavBar3 = observer(() => {
     );
 });
 
-export default NavBar3;
+export default NavBar4;
