@@ -21,17 +21,12 @@ const Registration = observer(() => {
     const [password,setPassword] = useState('')
     const [password_check,setPasswordCheck] = useState('')
     const click = async () =>{
-    
-    // console.log(email)
     try{
     if (isLogin){
     const response = await login(email, password, password_check)
-    // console.log(response)
 }
     else{
-    // console.log(email)
     const response = await registration(email, password, password_check)
-    // console.log(response)
     }
     user.setUser()
     user.setIsAuth(true)

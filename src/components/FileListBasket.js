@@ -33,14 +33,14 @@ const FileListBasket = observer(({users, aboba}) => {
                                             <Button
                                             style={{width: 65, height: 40, borderRadius: '78px', marginLeft: 53}}
                                             variant='outline-dark'
-                                            onClick={() => download(data1.path_file, data1.filename)}
+                                            onClick={async () => await download(data1.path_file, data1.filename)}
                                             >
                                         <img src={Download} style={{width: 40}}/><a></a>
                                         </Button>
                                         <Button
                                             style={{ marginLeft: 10, borderRadius: '78px', width: 65, height: 40}}
                                             variant='outline-dark'
-                                            onClick={async()=> {await deleteFile({id_file: data1.id_file})
+                                            onClick={async()=> {await deleteFile(data1.id_file)
                                             console.log({id_file: data1.id_file})
                                             }}>
                                         <img src={Delete} style={{width: 40}}/>

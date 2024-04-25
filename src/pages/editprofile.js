@@ -78,7 +78,6 @@ const EditProfile = observer(() => {
           try
           {
               const response = await changeProfile(nickname, email)
-              console.log(response)
           }
               catch(e)
               {
@@ -106,7 +105,6 @@ const EditProfile = observer(() => {
           };
           reader.readAsDataURL(file);
         }
-        // console.log(file.name)
       },
       onSuccess() {
         setIsUploading(false);
@@ -115,7 +113,7 @@ const EditProfile = observer(() => {
         setPercentage(Math.round(step.percent));
       },
       onError(err) {
-        // console.log("onError", err);
+        console.log("onError", err);
       }
     };
 

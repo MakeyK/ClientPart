@@ -72,8 +72,7 @@ const Recent = observer(() => {
     )
     else {
       useEffect(() => {    
-        selectAllFilesNew().then(data => {UserRequest.setUserRequest(data) 
-          console.log(`Selected ${data}`)})
+        selectAllFilesNew().then(data => {UserRequest.setUserRequest(data)})
         }, [])
         // useEffect(() => {
     //   setInterval(() => setCompleted(Math.floor(Math.random() * 100) + 1), 2000);

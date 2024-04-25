@@ -48,7 +48,7 @@ const FileList = observer(({users, aboba}) => {
                                             <Button
                                             style={{width: 65, height: 40, borderRadius: '78px', marginLeft: 53}}
                                             variant='outline-dark'
-                                            onClick={() => download(data1.path_file, data1.filename)}
+                                            onClick={async () => await download(data1.path_file, data1.filename)}
                                             >
                                         <img src={Download} style={{width: 40}}/><a></a>
                                         </Button>
