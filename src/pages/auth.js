@@ -22,17 +22,18 @@ const Auth = observer(() => {
     
     const click = async () =>{
         try{
-  
+            let response
         if (isLogin){
-            const response = await login(email, password)
+            response = await login(email, password)
             // console.log(response)
         }
         else{  
-            const response = await registration(email, password)
+            response = await registration(email, password)
             // console.log(response)
     }
     user.setUser()
     user.setIsAuth(true)
+    user.setNickname(response.nickname)
     navigate(MYSTORAGE_ROUTE)} 
     catch(e){
         alert(e)

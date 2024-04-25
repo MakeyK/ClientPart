@@ -3,7 +3,7 @@ import {Card, Container, Form, Button, Col, Nav, ListGroup} from 'react-bootstra
 import { LOGIN_ROUTE, REGISTRATION_ROUTE, FORGOTPASSWORD_ROUTE, MYSTORAGE_ROUTE, RECENT_ROUTE, BASKET_ROUTE, FAVORITE_ROUTE } from "../utils/consts";
 // import Row from 'react-bootstrap/Row'
 import { useLocation, NavLink, useNavigate } from "react-router-dom";
-import { changePassword, check, login, registration } from "../http/userApi";
+import { changePassword, check, login, registration, selectremovedFile } from "../http/userApi";
 import {observer} from "mobx-react-lite";
 // import Image from 'react-bootstrap/Image';
 import {Context} from "../index";
@@ -11,7 +11,6 @@ import Clock from '../Files/Clock.png'
 import Korzina from '../Files/Korzina.png'
 import Star from '../Files/Star.png'
 import Chelik from '../Files/Chelik.png'
-import FileList from "../components/FileList";
 import { selectAllFiles } from "../http/userApi";
 import { selectAllFilesNew } from "../http/userApi";
 import { selectAllFilesOld } from "../http/userApi";
@@ -21,7 +20,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import NavBar3 from '../components/NavBar3' 
-
+import FileListBasket from "../components/FileListBasket";
 
 
 const Basket = observer(() => {
@@ -72,8 +71,7 @@ const Basket = observer(() => {
         navigate(REGISTRATION_ROUTE))
         else {
           useEffect(() => {    
-            selectAllFilesNew().then(data => {UserRequest.setUserRequest(data) 
-              console.log(`Selected ${data}`)})
+            selectremovedFile().then(data => {UserRequest.setUserRequest(data)})
             }, [])
             // useEffect(() => {
             //   setInterval(() => setCompleted(Math.floor(Math.random() * 100) + 1), 2000);
@@ -153,8 +151,8 @@ const Basket = observer(() => {
              Пользователи
         </Dropdown.Toggle>
         <Dropdown.Menu style={{fontWeight:'bold', borderRadius: 26, width: 185, paddingLeft: 5}}>
-            <Dropdown.Item style={{borderRadius:26, width: 175}} href="#">Toxic</Dropdown.Item>
-            <Dropdown.Item style={{borderRadius:26, width: 175}} href="#">Serotonin</Dropdown.Item>
+            <Dropdown.Item style={{borderRadius:26, width: 175}} href="#">Dercko4</Dropdown.Item>
+            <Dropdown.Item style={{borderRadius:26, width: 175}} href="#">DJVoditel</Dropdown.Item>
         </Dropdown.Menu>
         </Dropdown>
       </ButtonGroup>
@@ -184,7 +182,7 @@ const Basket = observer(() => {
         style={{width: 1378, border: '1px solid', position: 'absolute', marginTop: 235}}
       className="my-12 h-0.5 border-t-0 bg-neutral-100 opacity-100 dark:opacity-50"/>
   
-    <FileList users={UserRequest.getUser()}/>
+    <FileListBasket users={UserRequest.getUser()}/>
         </Card>
         <NavBar3/>
     </Card>

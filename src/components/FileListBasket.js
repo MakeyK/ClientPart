@@ -9,29 +9,14 @@ import { LOGIN_ROUTE, REGISTRATION_ROUTE, FORGOTPASSWORD_ROUTE,RECENT_ROUTE, FAV
 import { useLocation, NavLink, useNavigate } from "react-router-dom";
 import useDownloader from 'react-use-downloader';
 import { removeFile } from '../http/userApi';
+import { deleteFile } from '../http/userApi';
 
-
-const FileList = observer(({users, aboba}) => {
+const FileListBasket = observer(({users, aboba}) => {
     const {user} = useContext(Context)
     const {UserRequest} = useContext(Context) 
     const navigate = useNavigate()
     const location = useLocation()
     const { size, elapsed, percentage, download, cancel, error, isInProgress } = useDownloader();
-    
-    const RemoveFile = async() => {
-        try
-        {
-            const response = await removeFile()
-        }
-        catch(e)
-        {
-            alert(e)
-        }
-    }
-    const basket = async() => {
-        let basket = `basket`
-        navigate(BASKET_ROUTE)
-      }
 
     return ( 
         <ListGroup style={{display: "inline-block",width: 1370, borderRadius: 40, paddingLeft: 15, color: '#FFFFFF4D', overflow: 'scroll'}}> 
@@ -55,7 +40,9 @@ const FileList = observer(({users, aboba}) => {
                                         <Button
                                             style={{ marginLeft: 10, borderRadius: '78px', width: 65, height: 40}}
                                             variant='outline-dark'
-                                            onClick={async()=> await removeFile(data1.id_file)}>
+                                            onClick={async()=> {await deleteFile({id_file: data1.id_file})
+                                            console.log({id_file: data1.id_file})
+                                            }}>
                                         <img src={Delete} style={{width: 40}}/>
                                         </Button> 
                                         {/* </div> */}
@@ -73,4 +60,4 @@ const FileList = observer(({users, aboba}) => {
     ); 
 }); 
  
-export default FileList;
+export default FileListBasket;

@@ -154,8 +154,8 @@ const Recent = observer(() => {
              Пользователи
         </Dropdown.Toggle>
         <Dropdown.Menu style={{fontWeight:'bold', borderRadius: 26, width: 185, paddingLeft: 5}}>
-            <Dropdown.Item style={{borderRadius:26, width: 175}} href="#">Toxic</Dropdown.Item>
-            <Dropdown.Item style={{borderRadius:26, width: 175}} href="#">Serotonin</Dropdown.Item>
+            <Dropdown.Item style={{borderRadius:26, width: 175}} href="#">Dercko4</Dropdown.Item>
+            <Dropdown.Item style={{borderRadius:26, width: 175}} href="#">DJVoditel</Dropdown.Item>
         </Dropdown.Menu>
         </Dropdown>
       </ButtonGroup>

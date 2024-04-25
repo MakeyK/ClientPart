@@ -48,6 +48,7 @@ const MyStorage = observer(() => {
     const props = {
       action: `${process.env.REACT_APP_API_URL}cwh/upload/file`,
       headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
+      multiple: true,
       beforeUpload(file_storage) {
         // Start upload
         setIsUploading(true);
@@ -125,17 +126,15 @@ const MyStorage = observer(() => {
     )
     else {
       useEffect(() => {    
-        selectAllFilesNew().then(data => {UserRequest.setUserRequest(data) 
-          console.log(`Selected ${data}`)})
+        selectAllFilesNew().then(data => {UserRequest.setUserRequest(data)})
         }, [])
         
         useEffect(() => {    
-          selectAllFiles().then(data => {UserRequest.setUserRequest(data) 
-            console.log(`Selected ${data}`)})
+          selectAllFiles().then(data => {UserRequest.setUserRequest(data)})
           }, [])
-          useEffect(() => {
-            setInterval(() => setCompleted(Math.floor(Math.random() * 100) + 1), 2000);
-          }, []);
+          // useEffect(() => {
+          //   setInterval(() => setCompleted(Math.floor(Math.random() * 100) + 1), 2000);
+          // }, []);
         
         
         return (
@@ -214,8 +213,8 @@ const MyStorage = observer(() => {
              Пользователи
         </Dropdown.Toggle>
         <Dropdown.Menu style={{fontWeight:'bold', borderRadius: 26, width: 185, paddingLeft: 5}}>
-            <Dropdown.Item style={{borderRadius:26, width: 175}} href="#">Toxic</Dropdown.Item>
-            <Dropdown.Item style={{borderRadius:26, width: 175}} href="#">Serotonin</Dropdown.Item>
+            <Dropdown.Item style={{borderRadius:26, width: 175}} href="#">Dercko4</Dropdown.Item>
+            <Dropdown.Item style={{borderRadius:26, width: 175}} href="#">DJVoditel</Dropdown.Item>
         </Dropdown.Menu>
         </Dropdown>
       </ButtonGroup>
@@ -260,8 +259,7 @@ const MyStorage = observer(() => {
             <hr
         style={{width: 1378, border: '1px solid', position: 'absolute', marginTop: 235}}
       className="my-12 h-0.5 border-t-0 bg-neutral-100 opacity-100 dark:opacity-50"/>
-  
-      <FileList users={UserRequest.getUser()}/>
+      <FileList users={UserRequest.getUser()} aboba={user.getuser()}/>
       <NavBar3/> 
         </Card>
     </Card>

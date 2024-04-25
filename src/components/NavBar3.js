@@ -23,6 +23,12 @@ const NavBar3 = observer(() => {
     const location = useLocation()
     const isLogin = location.pathname === LOGIN_ROUTE
 
+    const [searchTerm, setSearchTerm] = useState('');
+    const SearchBar = () => {
+    }
+    const handleSearch = (e) => {
+          setSearchTerm(e.target.value);
+        }
     const logOut = () => {
         user.setUser({})
         user.setIsAuth(false)
@@ -72,7 +78,8 @@ const NavBar3 = observer(() => {
                     style={{ borderRadius: '28px'}}
                     type="text"
                     placeholder="Поиск"
-                    
+                    value={searchTerm}
+                    onChange={handleSearch}
                 />
             </Col>
             {/* <Col xs="auto">
