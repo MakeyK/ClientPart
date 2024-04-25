@@ -21,6 +21,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import NavBar3 from '../components/NavBar3' 
 import FileListBasket from "../components/FileListBasket";
+import { deleteAllFiles } from "../http/userApi";
 
 
 const Basket = observer(() => {
@@ -165,6 +166,14 @@ const Basket = observer(() => {
             <Dropdown.Item style={{borderRadius:26, width: 175}} href="#">По дате создания</Dropdown.Item>
         </Dropdown.Menu>
         </Dropdown>
+      </ButtonGroup>
+      <ButtonGroup className="me-2" aria-label="Second group">
+      <Button
+        style={{marginLeft: 250,borderRadius: "26px", height: 42, width:301, fontWeight:'bold',}}
+        variant={"light"}
+        onClick={async()=> {await deleteAllFiles()}}>
+             {isLogin ? '' : 'Очистить корзину'}
+      </Button>
       </ButtonGroup>
     </ButtonToolbar>
     

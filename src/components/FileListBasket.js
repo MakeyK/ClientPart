@@ -40,9 +40,7 @@ const FileListBasket = observer(({users, aboba}) => {
                                         <Button
                                             style={{ marginLeft: 10, borderRadius: '78px', width: 65, height: 40}}
                                             variant='outline-dark'
-                                            onClick={async()=> {await deleteFile(data1.id_file)
-                                            console.log({id_file: data1.id_file})
-                                            }}>
+                                            onClick={async()=> {await deleteFile(data1.id_file)}}>
                                         <img src={Delete} style={{width: 40}}/>
                                         </Button> 
                                         {/* </div> */}

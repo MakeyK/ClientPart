@@ -52,7 +52,6 @@ export const selectAllFilesOld = async () => {
         const {data} = await $authHost.get(`cwh/select/all_user_files?order=old`, {
             headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
         })
-        // console.log(data)
         return data.user_files
         
     } catch (e) {
@@ -86,7 +85,6 @@ export const changeProfile = async (nickname, email) => {
         const {data} = await $authHost.patch('cwh/edit/profile', {nickname, email},{
             headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
         })
-        // console.log(data)
         return data
         
     } catch (e) {
@@ -142,6 +140,16 @@ export const selectremovedFile = async () => {
     }
 }
 
+export const deleteAllFiles = async (id_file) => {
+    try {
+        const {data} = await $authHost.delete('cwh/delete/destroy_all_file',{
+            headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
+        })
+        return data  
+    } catch (e) {
+        alert(e.response.data.message)
+    }
+}
 // export const deleteFile = async (id_file) => {
 //     const {data} = await $host.delete('cwh/delete/destroy_file', {id_file})
 // },{
