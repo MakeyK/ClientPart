@@ -108,16 +108,16 @@ export const downloadFile = async (id_file) => {
     }
 }
 
-// export const deleteFile = async (id_file) => {
-//     try {
-//         const {data} = await $authHost.delete('cwh/delete/destroy_file', {id_file},{
-//             headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
-//         })
-//         return data  
-//     } catch (e) {
-//         alert(e.response.data.message)
-//     }
-// }
+export const deleteFile = async (id_file) => {
+    try {
+        const {data} = await $authHost.delete('cwh/delete/destroy_file', {id_file},{
+            headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
+        })
+        return data  
+    } catch (e) {
+        alert(e.response.data.message)
+    }
+}
 
 export const removeFile = async (id_file) => {
     try {
